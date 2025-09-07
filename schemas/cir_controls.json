@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://oscalize.local/schemas/cir_controls.json",
+  "title": "CIR Controls Schema",
+  "description": "Canonical Intermediate Representation for CIS/CRM control implementation status",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source_file": { "type": "string" },
+        "sheet_name": { "type": "string" },
+        "extraction_date": { "type": "string", "format": "date-time" },
+        "framework": { "type": "string", "enum": ["NIST-800-53", "NIST-800-171", "CIS", "Custom"] },
+        "version": { "type": "string" },
+        "hash": { "type": "string" }
+      },
+      "required": ["source_file", "sheet_name", "extraction_date", "framework"]
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "control_id": { "type": "string" },
+          "control_title": { "type": "string" },
+          "control_description": { "type": "string" },
+          "implementation_status": { 
+            "type": "string",
+            "enum": ["Implemented", "Partially Implemented", "Planned", "Alternative Implementation", "Not Applicable"]
+          },
+          "customer_responsibility": { "type": "string" },
+          "csp_responsibility": { "type": "string" },
+          "shared_responsibility": { "type": "string" },
+          "implementation_guidance": { "type": "string" },
+          "assessment_procedures": { "type": "string" },
+          "notes": { "type": "string" },
+          "control_enhancements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enhancement_id": { "type": "string" },
+                "enhancement_title": { "type": "string" },
+                "implementation_status": { "type": "string" },
+                "notes": { "type": "string" }
+              },
+              "required": ["enhancement_id", "implementation_status"]
+            }
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "file": { "type": "string" },
+              "sheet": { "type": "string" },
+              "row": { "type": "integer" },
+              "col_range": { "type": "string" }
+            },
+            "required": ["file", "sheet", "row"]
+          }
+        },
+        "required": ["control_id", "implementation_status", "source"]
+      }
+    }
+  },
+  "required": ["metadata", "controls"]
+}

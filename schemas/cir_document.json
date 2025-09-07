@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://oscalize.local/schemas/cir_document.json",
+  "title": "CIR Document Schema",
+  "description": "Canonical Intermediate Representation for document sections (DOCX/MD)",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source_file": { "type": "string" },
+        "source_type": { "type": "string", "enum": ["docx", "md"] },
+        "extraction_date": { "type": "string", "format": "date-time" },
+        "pandoc_version": { "type": "string" },
+        "hash": { "type": "string" }
+      },
+      "required": ["source_file", "source_type", "extraction_date"]
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "level": { "type": "integer", "minimum": 1 },
+          "text": { "type": "string" },
+          "tables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "caption": { "type": "string" },
+                "headers": { "type": "array", "items": { "type": "string" } },
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "section_id": { "type": "string" },
+                    "paragraph": { "type": "integer" },
+                    "table_index": { "type": "integer" }
+                  },
+                  "required": ["section_id"]
+                }
+              },
+              "required": ["id", "headers", "rows", "source"]
+            }
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "file": { "type": "string" },
+              "heading_path": { "type": "array", "items": { "type": "string" } },
+              "paragraph_start": { "type": "integer" },
+              "paragraph_end": { "type": "integer" }
+            },
+            "required": ["file", "heading_path"]
+          }
+        },
+        "required": ["id", "title", "level", "text", "source"]
+      }
+    }
+  },
+  "required": ["metadata", "sections"]
+}

@@ -1,0 +1,193 @@
+{
+  "poam_mappings": {
+    "description": "Mapping configuration for POA&M Excel templates to OSCAL POA&M",
+    "version": "1.0",
+    "fedramp_v3_mappings": {
+      "required_columns": {
+        "poam_id": {
+          "column_names": ["POA&M Item ID", "Item ID", "POAM ID"],
+          "oscal_field": "uuid",
+          "required": true,
+          "validation": "alphanumeric"
+        },
+        "vulnerability_description": {
+          "column_names": ["Vulnerability Description", "Description", "Finding"],
+          "oscal_field": "title",
+          "required": true
+        },
+        "security_control": {
+          "column_names": ["Security Control Number (NC/NH/NI)", "Control Number", "Controls"],
+          "oscal_field": "related-controls",
+          "required": true,
+          "validation": "control_id_list"
+        },
+        "office_organization": {
+          "column_names": ["Office/Organization", "Organization", "Office"],
+          "oscal_field": "origins.actor",
+          "required": false
+        },
+        "security_control_name": {
+          "column_names": ["Security Control Name", "Control Name"],
+          "oscal_field": "props.control-name",
+          "required": false
+        },
+        "implementation_guidance": {
+          "column_names": ["Implementation Guidance", "Guidance"],
+          "oscal_field": "props.implementation-guidance",
+          "required": false
+        },
+        "severity": {
+          "column_names": ["Severity", "Risk Level", "Impact"],
+          "oscal_field": "props.severity",
+          "required": true,
+          "validation": "severity_levels"
+        },
+        "poam_status": {
+          "column_names": ["POA&M Status", "Status"],
+          "oscal_field": "implementation-status.state",
+          "required": true,
+          "validation": "status_values"
+        },
+        "scheduled_completion": {
+          "column_names": ["Scheduled Completion Date", "Target Date", "Due Date"],
+          "oscal_field": "props.scheduled-completion-date",
+          "required": false,
+          "validation": "date"
+        },
+        "actual_completion": {
+          "column_names": ["Actual Completion Date", "Completed Date"],
+          "oscal_field": "props.actual-completion-date",
+          "required": false,
+          "validation": "date"
+        },
+        "point_of_contact": {
+          "column_names": ["Point of Contact", "POC", "Responsible Party"],
+          "oscal_field": "props.point-of-contact",
+          "required": false
+        },
+        "resources_required": {
+          "column_names": ["Resources Required", "Resources"],
+          "oscal_field": "props.resources-required",
+          "required": false
+        },
+        "remediation_plan": {
+          "column_names": ["Remediation Plan", "Corrective Action", "Mitigation"],
+          "oscal_field": "description",
+          "required": false
+        },
+        "milestone_description": {
+          "column_names": ["Milestone Description", "Milestone"],
+          "oscal_field": "milestones.description",
+          "required": false
+        },
+        "milestone_date": {
+          "column_names": ["Milestone Date", "Milestone Target"],
+          "oscal_field": "milestones.target-date",
+          "required": false,
+          "validation": "date"
+        },
+        "milestone_status": {
+          "column_names": ["Milestone Status"],
+          "oscal_field": "milestones.props.status",
+          "required": false
+        },
+        "affected_assets": {
+          "column_names": ["Affected Assets", "Systems", "Components"],
+          "oscal_field": "props.affected-assets",
+          "required": false,
+          "validation": "asset_list"
+        },
+        "comments": {
+          "column_names": ["Comments", "Notes", "Additional Information"],
+          "oscal_field": "props.comments",
+          "required": false
+        }
+      },
+      "validation_rules": {
+        "severity_levels": ["Low", "Moderate", "High", "Critical"],
+        "status_values": ["Open", "Ongoing", "Completed", "Risk Accepted"],
+        "control_id_pattern": "^[A-Z]{2}-\\d+(?:\\(\\d+\\))?$",
+        "date_formats": ["YYYY-MM-DD", "MM/DD/YYYY", "DD/MM/YYYY"]
+      }
+    },
+    "risk_mappings": {
+      "severity_to_risk_level": {
+        "Critical": {
+          "risk_impact": "critical",
+          "risk_likelihood": "high"
+        },
+        "High": {
+          "risk_impact": "high", 
+          "risk_likelihood": "moderate"
+        },
+        "Moderate": {
+          "risk_impact": "moderate",
+          "risk_likelihood": "moderate"
+        },
+        "Low": {
+          "risk_impact": "low",
+          "risk_likelihood": "low"
+        }
+      },
+      "status_to_implementation": {
+        "Open": "not-implemented",
+        "Ongoing": "partial",
+        "Completed": "implemented",
+        "Risk Accepted": "alternative"
+      }
+    },
+    "finding_mappings": {
+      "origin_types": {
+        "assessment": {
+          "keywords": ["assessment", "audit", "review", "evaluation"],
+          "oscal_origin_type": "assessment"
+        },
+        "continuous_monitoring": {
+          "keywords": ["continuous", "monitoring", "ongoing", "periodic"],
+          "oscal_origin_type": "continuous-monitoring"
+        },
+        "incident": {
+          "keywords": ["incident", "breach", "event", "security event"],
+          "oscal_origin_type": "incident"
+        },
+        "penetration_testing": {
+          "keywords": ["penetration", "pentest", "red team", "ethical hack"],
+          "oscal_origin_type": "penetration-test"
+        },
+        "vulnerability_scan": {
+          "keywords": ["vulnerability", "scan", "nessus", "openvas"],
+          "oscal_origin_type": "vulnerability-scan"
+        }
+      }
+    }
+  },
+  "milestone_processing": {
+    "patterns": {
+      "multiple_milestones": {
+        "separator_patterns": [";", "\\n", "\\|"],
+        "description": "Patterns to split multiple milestones in single cell"
+      },
+      "milestone_format": {
+        "patterns": [
+          "^(.+?)\\s*-\\s*(\\d{1,2}/\\d{1,2}/\\d{4})\\s*-\\s*(.+?)$",
+          "^(.+?)\\s*\\((\\d{4}-\\d{2}-\\d{2})\\)\\s*-\\s*(.+?)$"
+        ],
+        "groups": ["description", "date", "status"]
+      }
+    }
+  },
+  "quality_checks": {
+    "required_field_completeness": {
+      "critical_fields": ["poam_id", "vulnerability_description", "severity", "poam_status"],
+      "minimum_completion_rate": 0.95
+    },
+    "data_consistency": {
+      "date_logic": "scheduled_completion >= creation_date",
+      "status_logic": "completed_items must have actual_completion_date"
+    },
+    "control_validation": {
+      "verify_control_ids": true,
+      "validate_against_catalog": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json"
+    }
+  }
+}

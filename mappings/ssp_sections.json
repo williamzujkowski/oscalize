@@ -1,0 +1,90 @@
+{
+  "section_mappings": {
+    "description": "Mapping configuration for SSP document sections to OSCAL components",
+    "version": "1.0",
+    "mappings": {
+      "system_identification": {
+        "keywords": ["system name", "system identification", "information system"],
+        "oscal_target": "system-characteristics.system-name",
+        "required": true
+      },
+      "system_description": {
+        "keywords": ["system description", "system overview", "general system description"],
+        "oscal_target": "system-characteristics.description",
+        "required": true
+      },
+      "fips_199_categorization": {
+        "keywords": ["fips 199", "security categorization", "impact level", "cia"],
+        "oscal_target": "system-characteristics.security-impact-level",
+        "required": true,
+        "extract_patterns": {
+          "confidentiality": "confidentiality\\s*:?\\s*(low|moderate|high)",
+          "integrity": "integrity\\s*:?\\s*(low|moderate|high)", 
+          "availability": "availability\\s*:?\\s*(low|moderate|high)"
+        }
+      },
+      "authorization_boundary": {
+        "keywords": ["authorization boundary", "system boundary", "boundary description"],
+        "oscal_target": "system-characteristics.authorization-boundary",
+        "required": true
+      },
+      "network_architecture": {
+        "keywords": ["network architecture", "network diagram", "system architecture"],
+        "oscal_target": "system-characteristics.network-architecture",
+        "required": false
+      },
+      "data_flow": {
+        "keywords": ["data flow", "information flow", "data processing"],
+        "oscal_target": "system-characteristics.data-flow",
+        "required": false
+      },
+      "user_roles": {
+        "keywords": ["user roles", "user types", "personnel", "access privileges"],
+        "oscal_target": "system-implementation.users",
+        "required": true
+      },
+      "control_implementation": {
+        "keywords": ["control implementation", "security controls", "safeguards"],
+        "oscal_target": "control-implementation.implemented-requirements",
+        "required": true,
+        "extract_patterns": {
+          "control_id": "\\b[A-Z]{2}-\\d+(?:\\(\\d+\\))?\\b"
+        }
+      }
+    }
+  },
+  "control_extraction": {
+    "patterns": [
+      {
+        "name": "nist_800_53",
+        "regex": "\\b[A-Z]{2}-\\d+(?:\\(\\d+\\))?\\b",
+        "description": "NIST SP 800-53 control identifiers (e.g., AC-1, AC-2(1))"
+      },
+      {
+        "name": "nist_800_171", 
+        "regex": "\\b\\d+\\.\\d+\\.\\d+\\b",
+        "description": "NIST SP 800-171 control identifiers (e.g., 3.1.1)"
+      }
+    ]
+  },
+  "table_mappings": {
+    "responsibility_matrix": {
+      "keywords": ["responsibility", "matrix", "customer", "csp"],
+      "columns": {
+        "control_id": ["control", "id", "identifier"],
+        "customer_responsibility": ["customer", "client"],
+        "csp_responsibility": ["csp", "provider", "cloud"],
+        "shared_responsibility": ["shared", "joint"]
+      }
+    },
+    "inventory_summary": {
+      "keywords": ["inventory", "components", "assets", "systems"],
+      "columns": {
+        "component_name": ["name", "component", "system"],
+        "component_type": ["type", "category"],
+        "criticality": ["criticality", "impact", "importance"],
+        "environment": ["environment", "location"]
+      }
+    }
+  }
+}

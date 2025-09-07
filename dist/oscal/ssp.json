@@ -1,0 +1,674 @@
+{
+  "system-security-plan": {
+    "uuid": "a68c49f8-6831-4f77-b58b-536b0a8539d8",
+    "metadata": {
+      "title": "System Security Plan",
+      "published": "2025-09-07T02:43:53.219295Z",
+      "last-modified": "2025-09-07T02:43:53.219295Z",
+      "version": "1.0",
+      "oscal-version": "1.1.3",
+      "props": [
+        {
+          "name": "source-file",
+          "value": "inputs/sample_ssp.md"
+        },
+        {
+          "name": "source-type",
+          "value": "md"
+        },
+        {
+          "name": "extraction-date",
+          "value": "2025-09-07T02:43:53.171441Z"
+        },
+        {
+          "name": "file-hash",
+          "value": "9f313001bf76d3730ca86b5eb6e4f7140960d004d62070a3050b443caf24878a"
+        },
+        {
+          "name": "pandoc-version",
+          "value": "pandoc 3.1.11.1"
+        }
+      ]
+    },
+    "import-profile": {
+      "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json",
+      "description": "FedRAMP Low Baseline Profile"
+    },
+    "system-characteristics": {
+      "system-ids": [
+        {
+          "identifier-type": "https://ietf.org/rfc/rfc4122",
+          "id": "ECS-001FIPS-199 Level: Moderate"
+        }
+      ],
+      "system-name": "Unknown System",
+      "description": "",
+      "system-information": {
+        "information-types": []
+      },
+      "authorization-boundary": {
+        "description": "Authorization boundary description not found in source document."
+      },
+      "network-architecture": {
+        "description": "Network architecture description not found in source document."
+      },
+      "data-flow": {
+        "description": "Data flow description not found in source document."
+      }
+    },
+    "system-implementation": {
+      "users": [
+        {
+          "uuid": "07578499-7145-4638-ac0a-44fc9bce4be8",
+          "title": "System Administrator",
+          "description": "Administrative access to system components",
+          "role-ids": [
+            "system-administrator"
+          ],
+          "authorized-privileges": [
+            "admin",
+            "configure",
+            "monitor"
+          ]
+        },
+        {
+          "uuid": "f7954852-8c51-41e8-8a1e-188b46ab87d3",
+          "title": "System User",
+          "description": "Standard user access to system",
+          "role-ids": [
+            "system-user"
+          ],
+          "authorized-privileges": [
+            "read",
+            "write"
+          ]
+        }
+      ],
+      "components": [
+        {
+          "uuid": "ef49dc9d-4e35-47d0-8979-9afc520114a8",
+          "type": "software",
+          "title": "Software Components",
+          "description": "Components of type: software",
+          "status": {
+            "state": "operational"
+          },
+          "responsible-roles": [],
+          "props": [
+            {
+              "name": "asset-count",
+              "value": "4"
+            },
+            {
+              "name": "component-type",
+              "value": "software"
+            }
+          ]
+        },
+        {
+          "uuid": "ad0b0a4f-102e-47eb-88be-4824618d3204",
+          "type": "hardware",
+          "title": "Hardware Components",
+          "description": "Components of type: hardware",
+          "status": {
+            "state": "operational"
+          },
+          "responsible-roles": [],
+          "props": [
+            {
+              "name": "asset-count",
+              "value": "1"
+            },
+            {
+              "name": "component-type",
+              "value": "hardware"
+            }
+          ]
+        },
+        {
+          "uuid": "92d148d5-ed68-4d78-87d4-765a8bb2ae1f",
+          "type": "service",
+          "title": "Service Components",
+          "description": "Components of type: service",
+          "status": {
+            "state": "operational"
+          },
+          "responsible-roles": [],
+          "props": [
+            {
+              "name": "asset-count",
+              "value": "1"
+            },
+            {
+              "name": "component-type",
+              "value": "service"
+            }
+          ]
+        }
+      ],
+      "inventory-items": [
+        {
+          "uuid": "012d7996-caa1-413c-8542-2ed078630fef",
+          "description": "React-based web application frontend",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "web-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            },
+            {
+              "name": "name",
+              "value": "Web Application Frontend"
+            },
+            {
+              "name": "environment",
+              "value": "Production"
+            },
+            {
+              "name": "criticality",
+              "value": "Moderate"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "627eabdc-2006-4925-91e0-d279ef27845c",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "web-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "033c8edc-fb13-4852-88d8-12ceb2bea7eb",
+          "description": "RESTful API gateway service",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "api-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            },
+            {
+              "name": "name",
+              "value": "API Gateway"
+            },
+            {
+              "name": "environment",
+              "value": "Production"
+            },
+            {
+              "name": "criticality",
+              "value": "High"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "b43f9584-ed20-4efb-8673-02a16dc8e33b",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "api-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "5ac18701-46bf-40bc-b7b9-2fcb61007679",
+          "description": "PostgreSQL primary database",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "db-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            },
+            {
+              "name": "name",
+              "value": "Primary Database"
+            },
+            {
+              "name": "environment",
+              "value": "Production"
+            },
+            {
+              "name": "criticality",
+              "value": "High"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "b9eb7d4b-7be6-4e47-a944-483fff38633f",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "db-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "d6a584f1-cd1b-442b-9f86-a958a37d6b4a",
+          "description": "PostgreSQL read replica",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "db-002"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            },
+            {
+              "name": "name",
+              "value": "Database Replica"
+            },
+            {
+              "name": "environment",
+              "value": "Production"
+            },
+            {
+              "name": "criticality",
+              "value": "High"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "7182a9d0-6930-4e6e-a2b3-2dce45acdb1e",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "db-002"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "e517410d-6e63-4f26-bb2c-2d8078951b86",
+          "description": "Application load balancer",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "lb-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "hardware"
+            },
+            {
+              "name": "name",
+              "value": "Load Balancer"
+            },
+            {
+              "name": "environment",
+              "value": "Production"
+            },
+            {
+              "name": "criticality",
+              "value": "Moderate"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "ae213cb7-bd8a-498b-a61f-0fd46f8861d2",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "lb-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "ba964e71-ed99-4e62-ac40-e8ce79f1b85d",
+          "description": "Multi-factor authentication service",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "auth-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "service"
+            },
+            {
+              "name": "name",
+              "value": "Authentication Service"
+            },
+            {
+              "name": "environment",
+              "value": "Production"
+            },
+            {
+              "name": "criticality",
+              "value": "Critical"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "aa020b18-7bcf-4a7d-a8d6-51865d03a5c2",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "auth-001"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "control-implementation": {
+      "description": "Control implementation descriptions extracted from source documents.",
+      "implemented-requirements": [
+        {
+          "uuid": "51d8c2cf-2cf4-4dce-a430-3a2075037e56",
+          "control-id": "AC-1",
+          "description": "Implementation Status: Implemented\n\nControl Implementation:The organization has implemented comprehensive access control policies and procedures. All user access is managed through centrally managed identity providers with multi-factor authentication required for all administrative access.\n\nResponsible Role: Security Team, System Administrator\n\nAssessment Procedures:- Review access control policies annually- Test authentication mechanisms quarterly- Audit user access logs monthly\n\n",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "source-section",
+              "value": "AC-1 Access Control Policy and Procedures"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AC-1_stmt",
+              "uuid": "57627bd3-04a5-4b28-935a-7d9b75e1e206",
+              "description": "Implementation Status: Implemented\n\nControl Implementation:The organization has implemented comprehensive access control policies and procedures. All user access is managed through centrally managed identity providers with multi-factor authentication required for all administrative access.\n\nResponsible Role: Security Team, System Administrator\n\nAssessment Procedures:- Review access control policies annually- Test authentication mechanisms quarterly- Audit user access logs monthly\n\n"
+            }
+          ]
+        },
+        {
+          "uuid": "bbab4fed-6bae-4cae-9a84-0e1cc60edc8b",
+          "control-id": "AC-2",
+          "description": "Implementation Status: Implemented\n\nControl Implementation:User accounts are managed through automated provisioning systems. Account creation, modification, and deletion are logged and monitored. Privileged accounts require additional approval workflows.\n\nResponsible Role: Identity Management Team\n\n",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "source-section",
+              "value": "AC-2 Account Management"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AC-2_stmt",
+              "uuid": "2c5b1461-740c-4bdd-ac0a-bb7ec00847b6",
+              "description": "Implementation Status: Implemented\n\nControl Implementation:User accounts are managed through automated provisioning systems. Account creation, modification, and deletion are logged and monitored. Privileged accounts require additional approval workflows.\n\nResponsible Role: Identity Management Team\n\n"
+            }
+          ]
+        },
+        {
+          "uuid": "6ab77021-4492-49bf-9867-dbd859807c08",
+          "control-id": "AU-1",
+          "description": "Implementation Status: Implemented\n\nControl Implementation:Comprehensive audit logging is implemented across all system components. Logs are centrally collected, monitored, and retained for compliance requirements.\n\n",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "source-section",
+              "value": "AU-1 Audit and Accountability Policy and Procedures"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AU-1_stmt",
+              "uuid": "ef4304a4-0962-415e-88e6-51f722e844ef",
+              "description": "Implementation Status: Implemented\n\nControl Implementation:Comprehensive audit logging is implemented across all system components. Logs are centrally collected, monitored, and retained for compliance requirements.\n\n"
+            }
+          ]
+        },
+        {
+          "uuid": "ee50ac5a-bb5a-4bd2-af07-b779e268bf2f",
+          "control-id": "IA-2",
+          "description": "Implementation Status: Implemented\n\nControl Implementation:All users must authenticate using multi-factor authentication (MFA). Authentication integrates with organizational identity providers supporting SAML 2.0 and OpenID Connect.\n\n",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "implemented"
+            },
+            {
+              "name": "source-section",
+              "value": "IA-2 Identification and Authentication (Organizational Users)"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "IA-2_stmt",
+              "uuid": "12dbf83e-91ff-41db-9b28-b8d3921f40ae",
+              "description": "Implementation Status: Implemented\n\nControl Implementation:All users must authenticate using multi-factor authentication (MFA). Authentication integrates with organizational identity providers supporting SAML 2.0 and OpenID Connect.\n\n"
+            }
+          ],
+          "findings": [
+            {
+              "uuid": "44a8cad1-7e9e-4ea0-bd96-685db6ac6055",
+              "title": "Multi-factor authentication not enforced for all admin accounts",
+              "description": "Configure MFA enforcement in identity provider and update admin procedures",
+              "props": [
+                {
+                  "name": "poam-id",
+                  "value": "POAM-001"
+                },
+                {
+                  "name": "severity",
+                  "value": "High"
+                },
+                {
+                  "name": "status",
+                  "value": "Open"
+                },
+                {
+                  "name": "scheduled-completion-date",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "c7f03bbf-6f1c-4611-8604-9ffb42c2c289",
+          "control-id": "AU-11",
+          "description": "Control AU-11 - see findings",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "partially-implemented"
+            }
+          ],
+          "statements": [],
+          "findings": [
+            {
+              "uuid": "95dc22e9-6adf-4db4-be12-6eafde962e00",
+              "title": "Audit log retention period insufficient",
+              "description": "Increase log retention period from 90 days to 1 year",
+              "props": [
+                {
+                  "name": "poam-id",
+                  "value": "POAM-002"
+                },
+                {
+                  "name": "severity",
+                  "value": "Moderate"
+                },
+                {
+                  "name": "status",
+                  "value": "Ongoing"
+                },
+                {
+                  "name": "scheduled-completion-date",
+                  "value": "2024-11-30"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "ccba2ace-728e-4029-b914-dbfc3abbfc39",
+          "control-id": "RA-5",
+          "description": "Control RA-5 - see findings",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "partially-implemented"
+            }
+          ],
+          "statements": [],
+          "findings": [
+            {
+              "uuid": "e79873b4-064c-4ce8-a258-4feb7ab25030",
+              "title": "Vulnerability scanning frequency needs improvement",
+              "description": "Configure automated weekly vulnerability scans",
+              "props": [
+                {
+                  "name": "poam-id",
+                  "value": "POAM-003"
+                },
+                {
+                  "name": "severity",
+                  "value": "Low"
+                },
+                {
+                  "name": "status",
+                  "value": "Open"
+                },
+                {
+                  "name": "scheduled-completion-date",
+                  "value": "2025-01-15"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "d72ccc0f-d632-4898-8984-b7c5ba650b54",
+          "control-id": "IR-1",
+          "description": "Control IR-1 - see findings",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "partially-implemented"
+            }
+          ],
+          "statements": [],
+          "findings": [
+            {
+              "uuid": "5c0f14c1-a93f-44a1-84d8-1f809a9b92c7",
+              "title": "Incident response procedures need annual review",
+              "description": "Annual review and update of incident response procedures",
+              "props": [
+                {
+                  "name": "poam-id",
+                  "value": "POAM-004"
+                },
+                {
+                  "name": "severity",
+                  "value": "Moderate"
+                },
+                {
+                  "name": "status",
+                  "value": "Risk Accepted"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "c62bc80d-8e84-46c2-9ffb-e0385f14b0a4",
+          "control-id": "SC-12",
+          "description": "Control SC-12 - see findings",
+          "props": [
+            {
+              "name": "implementation-status",
+              "value": "partially-implemented"
+            }
+          ],
+          "statements": [],
+          "findings": [
+            {
+              "uuid": "01b149e6-3783-4671-a345-85aa9e895401",
+              "title": "Database encryption keys require rotation",
+              "description": "Implement automated key rotation for database encryption",
+              "props": [
+                {
+                  "name": "poam-id",
+                  "value": "POAM-005"
+                },
+                {
+                  "name": "severity",
+                  "value": "High"
+                },
+                {
+                  "name": "status",
+                  "value": "Ongoing"
+                },
+                {
+                  "name": "scheduled-completion-date",
+                  "value": "2024-10-31"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "74f86eff-c752-4177-8954-4c8722df48c4",
+          "title": "Source Inventory: inventory_sample.xlsx",
+          "rlinks": [
+            {
+              "href": "inputs/inventory_sample.xlsx",
+              "rel": "source-document"
+            }
+          ],
+          "description": "Original inventory file used for OSCAL generation"
+        },
+        {
+          "uuid": "15523532-0727-41e9-b11b-4999d8169912",
+          "title": "Source Poam: poam_sample.xlsx",
+          "rlinks": [
+            {
+              "href": "inputs/poam_sample.xlsx",
+              "rel": "source-document"
+            }
+          ],
+          "description": "Original poam file used for OSCAL generation"
+        },
+        {
+          "uuid": "8078ca44-1f22-4be4-9e53-8b455ae5c15d",
+          "title": "Source Document: sample_ssp.md",
+          "rlinks": [
+            {
+              "href": "inputs/sample_ssp.md",
+              "rel": "source-document"
+            }
+          ],
+          "description": "Original document file used for OSCAL generation"
+        }
+      ]
+    }
+  }
+}

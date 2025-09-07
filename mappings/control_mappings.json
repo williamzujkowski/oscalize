@@ -1,0 +1,156 @@
+{
+  "control_mappings": {
+    "description": "Control implementation mappings for NIST frameworks",
+    "version": "1.0",
+    "frameworks": {
+      "nist_800_53_rev5": {
+        "baseline_profiles": {
+          "low": {
+            "profile_url": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json",
+            "control_count": 125
+          },
+          "moderate": {
+            "profile_url": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json", 
+            "control_count": 225
+          },
+          "high": {
+            "profile_url": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_HIGH-baseline_profile.json",
+            "control_count": 325
+          }
+        },
+        "control_families": {
+          "AC": "Access Control",
+          "AT": "Awareness and Training", 
+          "AU": "Audit and Accountability",
+          "CA": "Assessment, Authorization, and Monitoring",
+          "CM": "Configuration Management",
+          "CP": "Contingency Planning",
+          "IA": "Identification and Authentication",
+          "IR": "Incident Response",
+          "MA": "Maintenance",
+          "MP": "Media Protection",
+          "PE": "Physical and Environmental Protection",
+          "PL": "Planning",
+          "PS": "Personnel Security",
+          "RA": "Risk Assessment",
+          "SA": "System and Services Acquisition",
+          "SC": "System and Communications Protection",
+          "SI": "System and Information Integrity",
+          "SR": "Supply Chain Risk Management"
+        }
+      },
+      "nist_800_171_r3": {
+        "domains": {
+          "3.1": "Access Control",
+          "3.2": "Awareness and Training",
+          "3.3": "Audit and Accountability", 
+          "3.4": "Configuration Management",
+          "3.5": "Identification and Authentication",
+          "3.6": "Incident Response",
+          "3.7": "Maintenance",
+          "3.8": "Media Protection",
+          "3.9": "Personnel Security",
+          "3.10": "Physical Protection",
+          "3.11": "Risk Assessment",
+          "3.12": "Security Assessment",
+          "3.13": "System and Communications Protection",
+          "3.14": "System and Information Integrity"
+        }
+      }
+    },
+    "implementation_status_mappings": {
+      "implemented": {
+        "keywords": ["implemented", "in place", "configured", "deployed"],
+        "oscal_value": "implemented"
+      },
+      "partially_implemented": {
+        "keywords": ["partially implemented", "partial", "incomplete", "in progress"],
+        "oscal_value": "partial"
+      },
+      "planned": {
+        "keywords": ["planned", "future", "scheduled", "roadmap"],
+        "oscal_value": "planned"
+      },
+      "alternative": {
+        "keywords": ["alternative", "compensating", "equivalent"],
+        "oscal_value": "alternative"
+      },
+      "not_applicable": {
+        "keywords": ["not applicable", "n/a", "not required"],
+        "oscal_value": "not-applicable"
+      }
+    },
+    "responsibility_mappings": {
+      "customer": {
+        "keywords": ["customer", "client", "user", "organization"],
+        "oscal_party_type": "customer"
+      },
+      "provider": {
+        "keywords": ["provider", "csp", "cloud service provider", "vendor"],
+        "oscal_party_type": "provider"
+      },
+      "shared": {
+        "keywords": ["shared", "joint", "collaborative"],
+        "oscal_party_type": "shared"
+      },
+      "inherited": {
+        "keywords": ["inherited", "inherent", "platform"],
+        "oscal_party_type": "inherited"
+      }
+    },
+    "section_patterns": {
+      "control_title": {
+        "patterns": [
+          "^\\s*([A-Z]{2}-\\d+(?:\\(\\d+\\))?)\\s+(.+)$",
+          "^\\s*Control\\s+([A-Z]{2}-\\d+(?:\\(\\d+\\))?):?\\s*(.+)$"
+        ]
+      },
+      "implementation_description": {
+        "markers": [
+          "implementation:",
+          "how implemented:",
+          "control implementation:",
+          "description:"
+        ]
+      },
+      "assessment_procedures": {
+        "markers": [
+          "assessment procedures:",
+          "testing procedures:",
+          "verification:",
+          "validation:"
+        ]
+      }
+    }
+  },
+  "fedramp_mappings": {
+    "baselines": {
+      "low": {
+        "profile_name": "FedRAMP Low Baseline",
+        "required_controls": 125,
+        "enhancement_controls": 0
+      },
+      "moderate": {
+        "profile_name": "FedRAMP Moderate Baseline", 
+        "required_controls": 225,
+        "enhancement_controls": 100
+      },
+      "high": {
+        "profile_name": "FedRAMP High Baseline",
+        "required_controls": 325,
+        "enhancement_controls": 200
+      }
+    },
+    "customer_responsibility_matrix": {
+      "columns": {
+        "control_id": ["Control Identifier", "Control ID"],
+        "control_name": ["Control Name", "Control Title"],
+        "customer_responsibility": ["Customer Responsibility", "Customer"],
+        "csp_responsibility": ["CSP Responsibility", "Provider"],
+        "shared_responsibility": ["Shared Responsibility", "Shared"],
+        "implementation_guidance": ["Implementation Guidance", "Guidance"],
+        "assessment_procedures": ["Assessment Procedures", "Testing"]
+      }
+    }
+  }
+}

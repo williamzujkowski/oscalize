@@ -1,0 +1,664 @@
+{
+  "plan-of-action-and-milestones": {
+    "uuid": "04b9b1c1-5d04-4bc0-99b9-50516d81ea9c",
+    "metadata": {
+      "title": "Plan of Action and Milestones (POA&M)",
+      "published": "2025-09-07T02:43:53.220088Z",
+      "last-modified": "2025-09-07T02:43:53.220088Z",
+      "version": "1.0",
+      "oscal-version": "1.1.3",
+      "props": [
+        {
+          "name": "source-file",
+          "value": "inputs/poam_sample.xlsx"
+        },
+        {
+          "name": "sheet-name",
+          "value": "Sheet1"
+        },
+        {
+          "name": "template-version",
+          "value": "Unknown_v3.0_compatible"
+        },
+        {
+          "name": "extraction-date",
+          "value": "2025-09-07T02:43:53.158644Z"
+        },
+        {
+          "name": "file-hash",
+          "value": "9ba5177a35b7b2946ecada5169b4f6be3008d57eaec07bfab33f1ccafd77289c"
+        }
+      ]
+    },
+    "system-id": {
+      "identifier-type": "https://ietf.org/rfc/rfc4122",
+      "id": "36c37ba1-99c8-46ad-a58a-e5b2172e59e9"
+    },
+    "local-definitions": {
+      "components": [
+        {
+          "uuid": "fc4a29e1-8e24-43cb-b994-b28ac497403b",
+          "type": "software",
+          "title": "admin-portal",
+          "description": "Component referenced in POA&M: admin-portal",
+          "status": {
+            "state": "operational"
+          }
+        },
+        {
+          "uuid": "d644a6d1-8f7a-4cb7-9f44-ab15c28a3466",
+          "type": "software",
+          "title": "all-production-systems",
+          "description": "Component referenced in POA&M: all-production-systems",
+          "status": {
+            "state": "operational"
+          }
+        },
+        {
+          "uuid": "9928f1f8-0c1e-4913-b05a-7549425d8912",
+          "type": "software",
+          "title": "central-logging-system",
+          "description": "Component referenced in POA&M: central-logging-system",
+          "status": {
+            "state": "operational"
+          }
+        },
+        {
+          "uuid": "38553085-9072-49b0-8801-2fa320593aa2",
+          "type": "software",
+          "title": "incident-response-team",
+          "description": "Component referenced in POA&M: incident-response-team",
+          "status": {
+            "state": "operational"
+          }
+        },
+        {
+          "uuid": "05456b1b-463c-42df-8663-be7ac2ad93f7",
+          "type": "software",
+          "title": "production-database",
+          "description": "Component referenced in POA&M: production-database",
+          "status": {
+            "state": "operational"
+          }
+        }
+      ]
+    },
+    "poam-items": [
+      {
+        "uuid": "d97fc2a3-a9f7-42ce-a3a3-4d5cfd4e243d",
+        "title": "Multi-factor authentication not enforced for all admin accounts",
+        "description": "Configure MFA enforcement in identity provider and update admin procedures",
+        "props": [
+          {
+            "name": "poam-id",
+            "value": "POAM-001"
+          },
+          {
+            "name": "severity",
+            "value": "high"
+          },
+          {
+            "name": "scheduled-completion-date",
+            "value": "2024-12-31"
+          },
+          {
+            "name": "affected-assets",
+            "value": "admin-portal"
+          },
+          {
+            "name": "comments",
+            "value": "Requires coordination with identity management team"
+          },
+          {
+            "name": "source-row",
+            "value": "2"
+          },
+          {
+            "name": "source-sheet",
+            "value": "Sheet1"
+          }
+        ],
+        "related-findings": [
+          {
+            "finding-uuid": "aad7176c-3dd7-4247-81b5-060197024f0d",
+            "title": "Multi-factor authentication not enforced for all admin accounts",
+            "description": "Configure MFA enforcement in identity provider and update admin procedures",
+            "props": [
+              {
+                "name": "severity",
+                "value": "high"
+              }
+            ],
+            "related-controls": [
+              {
+                "control-id": "IA-2"
+              }
+            ]
+          }
+        ],
+        "related-risks": [
+          {
+            "risk-uuid": "17467861-59ac-4ee1-9ddb-7da17ef5fb7e",
+            "title": "Risk: Multi-factor authentication not enforced for all admin accounts",
+            "description": "Configure MFA enforcement in identity provider and update admin procedures",
+            "statement": "Configure MFA enforcement in identity provider and update admin procedures",
+            "props": [
+              {
+                "name": "risk-impact",
+                "value": "high"
+              },
+              {
+                "name": "risk-likelihood",
+                "value": "moderate"
+              },
+              {
+                "name": "risk-status",
+                "value": "open"
+              }
+            ]
+          }
+        ],
+        "origins": [
+          {
+            "actor": {
+              "type": "party",
+              "party-uuid": "4a579f51-498b-4d9c-9d55-fd2a9ad33736",
+              "props": [
+                {
+                  "name": "origin-type",
+                  "value": "assessment"
+                }
+              ]
+            }
+          }
+        ],
+        "implementation-status": {
+          "state": "open"
+        },
+        "milestones": [
+          {
+            "uuid": "91cc5c93-41f5-4b11-a830-ebdb8bd7c047",
+            "title": "Configure MFA in identity provider",
+            "description": "Configure MFA in identity provider",
+            "props": [
+              {
+                "name": "target-date",
+                "value": "2024-11-15"
+              },
+              {
+                "name": "milestone-status",
+                "value": "pending"
+              }
+            ],
+            "target-date": "2024-11-15"
+          }
+        ]
+      },
+      {
+        "uuid": "3cf1a765-356f-4a58-ab76-e50d55e62656",
+        "title": "Audit log retention period insufficient",
+        "description": "Increase log retention period from 90 days to 1 year",
+        "props": [
+          {
+            "name": "poam-id",
+            "value": "POAM-002"
+          },
+          {
+            "name": "severity",
+            "value": "moderate"
+          },
+          {
+            "name": "scheduled-completion-date",
+            "value": "2024-11-30"
+          },
+          {
+            "name": "affected-assets",
+            "value": "central-logging-system"
+          },
+          {
+            "name": "comments",
+            "value": "Storage costs approved by management"
+          },
+          {
+            "name": "source-row",
+            "value": "3"
+          },
+          {
+            "name": "source-sheet",
+            "value": "Sheet1"
+          }
+        ],
+        "related-findings": [
+          {
+            "finding-uuid": "0db073a7-8556-4b1d-b8d7-cc8940815968",
+            "title": "Audit log retention period insufficient",
+            "description": "Increase log retention period from 90 days to 1 year",
+            "props": [
+              {
+                "name": "severity",
+                "value": "moderate"
+              }
+            ],
+            "related-controls": [
+              {
+                "control-id": "AU-11"
+              }
+            ]
+          }
+        ],
+        "related-risks": [
+          {
+            "risk-uuid": "18f471f3-1aef-48e7-8d3c-9c3fcfcf1468",
+            "title": "Risk: Audit log retention period insufficient",
+            "description": "Increase log retention period from 90 days to 1 year",
+            "statement": "Increase log retention period from 90 days to 1 year",
+            "props": [
+              {
+                "name": "risk-impact",
+                "value": "moderate"
+              },
+              {
+                "name": "risk-likelihood",
+                "value": "moderate"
+              },
+              {
+                "name": "risk-status",
+                "value": "ongoing"
+              }
+            ]
+          }
+        ],
+        "origins": [
+          {
+            "actor": {
+              "type": "party",
+              "party-uuid": "f1271d93-e4ae-41b0-9f77-55c5a9adb8a5",
+              "props": [
+                {
+                  "name": "origin-type",
+                  "value": "assessment"
+                }
+              ]
+            }
+          }
+        ],
+        "implementation-status": {
+          "state": "ongoing"
+        },
+        "milestones": [
+          {
+            "uuid": "fb29d6aa-9dff-4f4e-aadb-d47c4d944d87",
+            "title": "Update log retention configuration",
+            "description": "Update log retention configuration",
+            "props": [
+              {
+                "name": "target-date",
+                "value": "2024-10-30"
+              },
+              {
+                "name": "milestone-status",
+                "value": "completed"
+              }
+            ],
+            "target-date": "2024-10-30"
+          }
+        ]
+      },
+      {
+        "uuid": "2165509c-402b-49a0-9bd0-067a8fcb1d47",
+        "title": "Vulnerability scanning frequency needs improvement",
+        "description": "Configure automated weekly vulnerability scans",
+        "props": [
+          {
+            "name": "poam-id",
+            "value": "POAM-003"
+          },
+          {
+            "name": "severity",
+            "value": "low"
+          },
+          {
+            "name": "scheduled-completion-date",
+            "value": "2025-01-15"
+          },
+          {
+            "name": "affected-assets",
+            "value": "all-production-systems"
+          },
+          {
+            "name": "comments",
+            "value": "Requires approval for additional scanner licenses"
+          },
+          {
+            "name": "source-row",
+            "value": "4"
+          },
+          {
+            "name": "source-sheet",
+            "value": "Sheet1"
+          }
+        ],
+        "related-findings": [
+          {
+            "finding-uuid": "aa9cb9cb-8ebf-4a41-aec2-ffa1224ed7eb",
+            "title": "Vulnerability scanning frequency needs improvement",
+            "description": "Configure automated weekly vulnerability scans",
+            "props": [
+              {
+                "name": "severity",
+                "value": "low"
+              }
+            ],
+            "related-controls": [
+              {
+                "control-id": "RA-5"
+              }
+            ]
+          }
+        ],
+        "related-risks": [
+          {
+            "risk-uuid": "8e3e4310-2b8b-4461-be55-37b0c4512354",
+            "title": "Risk: Vulnerability scanning frequency needs improvement",
+            "description": "Configure automated weekly vulnerability scans",
+            "statement": "Configure automated weekly vulnerability scans",
+            "props": [
+              {
+                "name": "risk-impact",
+                "value": "low"
+              },
+              {
+                "name": "risk-likelihood",
+                "value": "moderate"
+              },
+              {
+                "name": "risk-status",
+                "value": "open"
+              }
+            ]
+          }
+        ],
+        "origins": [
+          {
+            "actor": {
+              "type": "party",
+              "party-uuid": "9e6ba912-6042-4659-8ea4-f127cfc4769e",
+              "props": [
+                {
+                  "name": "origin-type",
+                  "value": "assessment"
+                }
+              ]
+            }
+          }
+        ],
+        "implementation-status": {
+          "state": "open"
+        },
+        "milestones": [
+          {
+            "uuid": "82623af2-e1b0-414a-967e-549a0d591dcb",
+            "title": "Update scanning schedule",
+            "description": "Update scanning schedule",
+            "props": [
+              {
+                "name": "target-date",
+                "value": "2024-12-01"
+              },
+              {
+                "name": "milestone-status",
+                "value": "pending"
+              }
+            ],
+            "target-date": "2024-12-01"
+          }
+        ]
+      },
+      {
+        "uuid": "81de5614-3bc0-447e-8382-7093b4afc2d5",
+        "title": "Incident response procedures need annual review",
+        "description": "Annual review and update of incident response procedures",
+        "props": [
+          {
+            "name": "poam-id",
+            "value": "POAM-004"
+          },
+          {
+            "name": "severity",
+            "value": "moderate"
+          },
+          {
+            "name": "affected-assets",
+            "value": "incident-response-team"
+          },
+          {
+            "name": "comments",
+            "value": "Review completed - procedures current"
+          },
+          {
+            "name": "source-row",
+            "value": "5"
+          },
+          {
+            "name": "source-sheet",
+            "value": "Sheet1"
+          }
+        ],
+        "related-findings": [
+          {
+            "finding-uuid": "b62a6050-2a84-4f25-835b-676f16a711bf",
+            "title": "Incident response procedures need annual review",
+            "description": "Annual review and update of incident response procedures",
+            "props": [
+              {
+                "name": "severity",
+                "value": "moderate"
+              }
+            ],
+            "related-controls": [
+              {
+                "control-id": "IR-1"
+              }
+            ]
+          }
+        ],
+        "related-risks": [
+          {
+            "risk-uuid": "0f9fec54-4e29-4a15-ac45-fc441e24df3f",
+            "title": "Risk: Incident response procedures need annual review",
+            "description": "Annual review and update of incident response procedures",
+            "statement": "Annual review and update of incident response procedures",
+            "props": [
+              {
+                "name": "risk-impact",
+                "value": "moderate"
+              },
+              {
+                "name": "risk-likelihood",
+                "value": "moderate"
+              },
+              {
+                "name": "risk-status",
+                "value": "risk-accepted"
+              }
+            ]
+          }
+        ],
+        "origins": [
+          {
+            "actor": {
+              "type": "party",
+              "party-uuid": "c1a31129-3a78-4bc9-a4b3-3f7db380cfbe",
+              "props": [
+                {
+                  "name": "origin-type",
+                  "value": "assessment"
+                }
+              ]
+            }
+          }
+        ],
+        "implementation-status": {
+          "state": "risk-accepted"
+        },
+        "milestones": [
+          {
+            "uuid": "49e7ba76-ee60-4240-894a-c8059f82ef40",
+            "title": "Schedule annual review meeting",
+            "description": "Schedule annual review meeting",
+            "props": [
+              {
+                "name": "target-date",
+                "value": "2024-09-15"
+              },
+              {
+                "name": "milestone-status",
+                "value": "completed"
+              }
+            ],
+            "target-date": "2024-09-15"
+          }
+        ]
+      },
+      {
+        "uuid": "765b86fd-2a55-4336-9302-ecfedc917a9c",
+        "title": "Database encryption keys require rotation",
+        "description": "Implement automated key rotation for database encryption",
+        "props": [
+          {
+            "name": "poam-id",
+            "value": "POAM-005"
+          },
+          {
+            "name": "severity",
+            "value": "high"
+          },
+          {
+            "name": "scheduled-completion-date",
+            "value": "2024-10-31"
+          },
+          {
+            "name": "affected-assets",
+            "value": "production-database"
+          },
+          {
+            "name": "comments",
+            "value": "Testing completed successfully"
+          },
+          {
+            "name": "source-row",
+            "value": "6"
+          },
+          {
+            "name": "source-sheet",
+            "value": "Sheet1"
+          }
+        ],
+        "related-findings": [
+          {
+            "finding-uuid": "9b6de566-bd51-4998-a3f8-2a7df636b2ef",
+            "title": "Database encryption keys require rotation",
+            "description": "Implement automated key rotation for database encryption",
+            "props": [
+              {
+                "name": "severity",
+                "value": "high"
+              }
+            ],
+            "related-controls": [
+              {
+                "control-id": "SC-12"
+              }
+            ]
+          }
+        ],
+        "related-risks": [
+          {
+            "risk-uuid": "3c63efde-447d-4b77-9c25-26c9b703e2b5",
+            "title": "Risk: Database encryption keys require rotation",
+            "description": "Implement automated key rotation for database encryption",
+            "statement": "Implement automated key rotation for database encryption",
+            "props": [
+              {
+                "name": "risk-impact",
+                "value": "high"
+              },
+              {
+                "name": "risk-likelihood",
+                "value": "moderate"
+              },
+              {
+                "name": "risk-status",
+                "value": "ongoing"
+              }
+            ]
+          }
+        ],
+        "origins": [
+          {
+            "actor": {
+              "type": "party",
+              "party-uuid": "18e7a50a-b1ab-436c-a0a5-e7461d4aedbc",
+              "props": [
+                {
+                  "name": "origin-type",
+                  "value": "assessment"
+                }
+              ]
+            }
+          }
+        ],
+        "implementation-status": {
+          "state": "ongoing"
+        },
+        "milestones": [
+          {
+            "uuid": "3e6fdbeb-ad86-4680-9971-80e5792c6655",
+            "title": "Test key rotation procedure",
+            "description": "Test key rotation procedure",
+            "props": [
+              {
+                "name": "target-date",
+                "value": "2024-10-15"
+              },
+              {
+                "name": "milestone-status",
+                "value": "completed"
+              }
+            ],
+            "target-date": "2024-10-15"
+          }
+        ]
+      }
+    ],
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "e06f24bf-2a53-4779-9568-1b7e4d690705",
+          "title": "POA&M Source: poam_sample.xlsx",
+          "rlinks": [
+            {
+              "href": "inputs/poam_sample.xlsx",
+              "rel": "source-document"
+            }
+          ],
+          "description": "Original POA&M spreadsheet used for OSCAL generation",
+          "props": [
+            {
+              "name": "template-version",
+              "value": "Unknown_v3.0_compatible"
+            },
+            {
+              "name": "sheet-name",
+              "value": "Sheet1"
+            },
+            {
+              "name": "file-hash",
+              "value": "9ba5177a35b7b2946ecada5169b4f6be3008d57eaec07bfab33f1ccafd77289c"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

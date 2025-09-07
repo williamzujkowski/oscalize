@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://oscalize.local/schemas/cir_inventory.json",
+  "title": "CIR Inventory Schema",
+  "description": "Canonical Intermediate Representation for Integrated Inventory Workbook (FedRAMP Attachment 13)",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source_file": { "type": "string" },
+        "sheet_name": { "type": "string" },
+        "extraction_date": { "type": "string", "format": "date-time" },
+        "template_version": { "type": "string" },
+        "hash": { "type": "string" }
+      },
+      "required": ["source_file", "sheet_name", "extraction_date"]
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "asset_id": { "type": "string" },
+          "asset_type": { 
+            "type": "string",
+            "enum": ["hardware", "software", "data", "network", "service", "other"]
+          },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "environment": { 
+            "type": "string",
+            "enum": ["Production", "Development", "Test", "Staging", "Other"]
+          },
+          "service_layer": { "type": "string" },
+          "function": { "type": "string" },
+          "public_access": { "type": "boolean" },
+          "virtual": { "type": "boolean" },
+          "ip_address": { "type": "string" },
+          "mac_address": { "type": "string" },
+          "vlan": { "type": "string" },
+          "network_location": { "type": "string" },
+          "asset_owner": { "type": "string" },
+          "system_admin": { "type": "string" },
+          "criticality": { 
+            "type": "string",
+            "enum": ["Low", "Moderate", "High", "Critical"]
+          },
+          "baseline": { "type": "string" },
+          "operating_system": { "type": "string" },
+          "software_version": { "type": "string" },
+          "patch_level": { "type": "string" },
+          "tags": { 
+            "type": "array", 
+            "items": { "type": "string" } 
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "rel": { "type": "string" },
+                "href": { "type": "string", "format": "uri" },
+                "media_type": { "type": "string" }
+              },
+              "required": ["rel", "href"]
+            }
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "file": { "type": "string" },
+              "sheet": { "type": "string" },
+              "row": { "type": "integer" },
+              "col_range": { "type": "string" }
+            },
+            "required": ["file", "sheet", "row"]
+          }
+        },
+        "required": ["asset_id", "asset_type", "name", "environment", "criticality", "source"]
+      }
+    }
+  },
+  "required": ["metadata", "assets"]
+}

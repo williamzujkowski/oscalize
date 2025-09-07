@@ -1,0 +1,204 @@
+version: '3'
+
+vars:
+  TOOLS_DIR: tools/oscalize
+  INPUTS_DIR: inputs
+  DIST_DIR: dist
+  OSCAL_DIR: "{{.DIST_DIR}}/oscal"
+  VALIDATION_DIR: "{{.OSCAL_DIR}}/validation"
+  SCHEMAS_DIR: schemas
+  MAPPINGS_DIR: mappings
+
+tasks:
+  default:
+    desc: "Show available tasks"
+    cmds:
+      - task --list
+
+  clean:
+    desc: "Clean output directories"
+    cmds:
+      - rm -rf {{.DIST_DIR}}
+      - mkdir -p {{.OSCAL_DIR}}/validation
+
+  setup:
+    desc: "Set up development environment"
+    cmds:
+      - python -m pip install -r requirements.txt
+      - mkdir -p {{.INPUTS_DIR}} {{.OSCAL_DIR}}/validation tests/corpus refs
+
+  oscalize:
+    desc: "Convert input documents to OSCAL (main workflow)"
+    deps: [clean]
+    cmds:
+      - echo "Starting oscalize conversion workflow..."
+      - python {{.TOOLS_DIR}}/cli.py convert {{.INPUTS_DIR}}/* --output {{.OSCAL_DIR}}
+      - task: manifest
+    sources:
+      - "{{.INPUTS_DIR}}/*"
+      - "{{.TOOLS_DIR}}/**/*.py"
+      - "{{.SCHEMAS_DIR}}/*.json"
+      - "{{.MAPPINGS_DIR}}/**/*"
+    generates:
+      - "{{.OSCAL_DIR}}/*.json"
+      - "{{.OSCAL_DIR}}/manifest.json"
+
+  validate:
+    desc: "Validate OSCAL outputs with NIST oscal-cli"
+    cmds:
+      - echo "Validating OSCAL artifacts..."
+      - |
+        for file in {{.OSCAL_DIR}}/*.json; do
+          if [ -f "$file" ]; then
+            filename=$(basename "$file" .json)
+            echo "Validating $filename.json..."
+            case "$filename" in
+              "ssp")
+                /opt/oscal-cli/bin/oscal-cli ssp validate "$file" > "{{.VALIDATION_DIR}}/$filename.log" 2>&1 || true
+                ;;
+              "poam")
+                /opt/oscal-cli/bin/oscal-cli poam validate "$file" > "{{.VALIDATION_DIR}}/$filename.log" 2>&1 || true
+                ;;
+              "manifest")
+                echo "Skipping validation for $filename (not an OSCAL document)" > "{{.VALIDATION_DIR}}/$filename.log"
+                ;;
+              *)
+                echo "Unknown OSCAL document type: $filename" > "{{.VALIDATION_DIR}}/$filename.log"
+                ;;
+            esac
+          fi
+        done
+      - task: validation-summary
+    sources:
+      - "{{.OSCAL_DIR}}/*.json"
+    generates:
+      - "{{.VALIDATION_DIR}}/*.log"
+
+  validation-summary:
+    desc: "Generate validation summary report"
+    internal: true
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py validation-summary {{.VALIDATION_DIR}} --output {{.VALIDATION_DIR}}/summary.json
+
+  bundle:
+    desc: "Create signed bundle with manifest"
+    deps: [validate]
+    cmds:
+      - echo "Creating deployment bundle..."
+      - python {{.TOOLS_DIR}}/cli.py bundle {{.OSCAL_DIR}} --output {{.DIST_DIR}}/oscalize-bundle.tar.gz
+      - echo "Bundle created at {{.DIST_DIR}}/oscalize-bundle.tar.gz"
+    generates:
+      - "{{.DIST_DIR}}/oscalize-bundle.tar.gz"
+
+  manifest:
+    desc: "Generate manifest with hashes and timestamps"
+    internal: true
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py manifest {{.OSCAL_DIR}} --output {{.OSCAL_DIR}}/manifest.json
+
+  diff:
+    desc: "Deep diff of CIR/OSCAL vs last run"
+    cmds:
+      - |
+        if [ -d "{{.DIST_DIR}}.prev" ]; then
+          echo "Comparing current run with previous..."
+          diff -r {{.DIST_DIR}}.prev {{.DIST_DIR}} || echo "Differences found"
+        else
+          echo "No previous run found for comparison"
+        fi
+
+  backup-run:
+    desc: "Backup current run for diff comparison"
+    cmds:
+      - rm -rf {{.DIST_DIR}}.prev
+      - cp -r {{.DIST_DIR}} {{.DIST_DIR}}.prev
+      - echo "Current run backed up for future comparisons"
+
+  # Development and testing tasks
+  test:
+    desc: "Run test suite"
+    cmds:
+      - python -m pytest tests/ -v --cov={{.TOOLS_DIR}}
+
+  test-corpus:
+    desc: "Test against corpus of known inputs/outputs"
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py test-corpus tests/corpus/
+
+  lint:
+    desc: "Run code quality checks"
+    cmds:
+      - ruff check {{.TOOLS_DIR}}/
+      - ruff format --check {{.TOOLS_DIR}}/
+      - mypy {{.TOOLS_DIR}}/
+
+  format:
+    desc: "Format code"
+    cmds:
+      - ruff format {{.TOOLS_DIR}}/
+
+  # Schema validation tasks
+  validate-schemas:
+    desc: "Validate CIR JSON schemas"
+    cmds:
+      - |
+        for schema in {{.SCHEMAS_DIR}}/*.json; do
+          echo "Validating schema: $(basename $schema)"
+          python -c "import json, jsonschema; schema=json.load(open('$schema')); jsonschema.Draft7Validator.check_schema(schema)"
+        done
+
+  # Docker tasks
+  docker-build:
+    desc: "Build Docker image (multi-arch)"
+    cmds:
+      - docker buildx build --platform linux/amd64,linux/arm64 -t oscalize:latest .
+
+  docker-build-local:
+    desc: "Build Docker image (local platform)"
+    cmds:
+      - docker build -t oscalize:dev .
+
+  docker-run:
+    desc: "Run oscalize in Docker container"
+    cmds:
+      - docker run --rm -it -v "$PWD:/work" -w /work oscalize:latest 'task oscalize {{.CLI_ARGS}}'
+
+  docker-validate:
+    desc: "Run validation in Docker container"
+    cmds:
+      - docker run --rm -it -v "$PWD:/work" -w /work oscalize:latest 'task validate'
+
+  # Utility tasks
+  check-deps:
+    desc: "Check if required dependencies are available"
+    cmds:
+      - python --version
+      - pandoc --version
+      - |
+        /opt/oscal-cli/bin/oscal-cli --version || echo "WARN: oscal-cli not found"
+
+  install-oscal-cli:
+    desc: "Install NIST oscal-cli locally"
+    cmds:
+      - |
+        mkdir -p /tmp/oscal-cli
+        cd /tmp/oscal-cli
+        curl -sSLO "https://repo1.maven.org/maven2/gov/nist/secauto/oscal/tools/oscal-cli/cli-core/1.0.1/cli-core-1.0.1-oscal-cli.zip"
+        unzip cli-core-1.0.1-oscal-cli.zip
+        echo "Add /tmp/oscal-cli/bin to your PATH"
+
+  # Documentation and compliance
+  compliance-check:
+    desc: "Check compliance with M-24-15 requirements"
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py compliance-check {{.OSCAL_DIR}}
+
+  # Full workflow task
+  full:
+    desc: "Complete workflow: convert -> validate -> bundle"
+    deps: [clean]
+    cmds:
+      - task: oscalize
+      - task: validate
+      - task: bundle
+      - echo "Complete workflow finished. Check {{.DIST_DIR}} for outputs."

@@ -1,0 +1,271 @@
+{
+  "inventory_mappings": {
+    "description": "Mapping configuration for FedRAMP Integrated Inventory Workbook to OSCAL components",
+    "version": "1.0",
+    "fedramp_iiw_mappings": {
+      "required_columns": {
+        "asset_id": {
+          "column_names": ["Asset ID", "Asset Identifier", "Component ID"],
+          "oscal_field": "uuid",
+          "required": true,
+          "validation": "unique_identifier"
+        },
+        "asset_type": {
+          "column_names": ["Asset Type", "Component Type", "Type"],
+          "oscal_field": "type",
+          "required": true,
+          "validation": "asset_types"
+        },
+        "asset_name": {
+          "column_names": ["Asset Name", "Component Name", "Name"],
+          "oscal_field": "title",
+          "required": true
+        },
+        "asset_description": {
+          "column_names": ["Asset Description", "Description"],
+          "oscal_field": "description",
+          "required": false
+        },
+        "environment": {
+          "column_names": ["Environment", "Deployment Environment"],
+          "oscal_field": "props.environment",
+          "required": true,
+          "validation": "environments"
+        },
+        "service_layer": {
+          "column_names": ["Service Layer", "Layer"],
+          "oscal_field": "props.service-layer",
+          "required": false
+        },
+        "function": {
+          "column_names": ["Function", "Purpose", "Role"],
+          "oscal_field": "props.function",
+          "required": false
+        },
+        "public_access": {
+          "column_names": ["Public (Internet Accessible)", "Public Access", "Internet Facing"],
+          "oscal_field": "props.public-access",
+          "required": true,
+          "validation": "boolean"
+        },
+        "virtual": {
+          "column_names": ["Virtual (Y/N)", "Virtual", "Virtualized"],
+          "oscal_field": "props.virtual",
+          "required": true,
+          "validation": "boolean"
+        },
+        "ip_address": {
+          "column_names": ["IP Address", "IP"],
+          "oscal_field": "props.ip-address",
+          "required": false,
+          "validation": "ip_address"
+        },
+        "mac_address": {
+          "column_names": ["MAC Address", "MAC"],
+          "oscal_field": "props.mac-address", 
+          "required": false,
+          "validation": "mac_address"
+        },
+        "vlan": {
+          "column_names": ["VLAN", "VLAN ID"],
+          "oscal_field": "props.vlan",
+          "required": false
+        },
+        "network_location": {
+          "column_names": ["Network Location", "Location"],
+          "oscal_field": "props.network-location",
+          "required": false
+        },
+        "asset_owner": {
+          "column_names": ["Asset Owner", "Owner"],
+          "oscal_field": "responsible-roles.asset-owner",
+          "required": true
+        },
+        "system_admin": {
+          "column_names": ["System Administrator", "Admin", "Administrator"],
+          "oscal_field": "responsible-roles.system-administrator",
+          "required": false
+        },
+        "criticality": {
+          "column_names": ["Data Sensitivity/Criticality", "Criticality", "Impact Level"],
+          "oscal_field": "props.criticality",
+          "required": true,
+          "validation": "criticality_levels"
+        },
+        "baseline": {
+          "column_names": ["Baseline Configuration", "Baseline"],
+          "oscal_field": "props.baseline-configuration",
+          "required": false
+        },
+        "operating_system": {
+          "column_names": ["Operating System", "OS"],
+          "oscal_field": "props.operating-system",
+          "required": false
+        },
+        "software_version": {
+          "column_names": ["Software/Application Version", "Version"],
+          "oscal_field": "props.software-version",
+          "required": false
+        },
+        "patch_level": {
+          "column_names": ["Patch Level", "Patches"],
+          "oscal_field": "props.patch-level",
+          "required": false
+        }
+      },
+      "validation_rules": {
+        "asset_types": ["hardware", "software", "data", "network", "service", "other"],
+        "environments": ["Production", "Development", "Test", "Staging", "Other"],
+        "criticality_levels": ["Low", "Moderate", "High", "Critical"],
+        "boolean_values": ["yes", "no", "y", "n", "true", "false", "1", "0"],
+        "ip_address_pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$|^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$",
+        "mac_address_pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+      }
+    },
+    "component_grouping": {
+      "strategies": {
+        "by_service_layer": {
+          "description": "Group assets by service layer (e.g., Application, Database, Infrastructure)",
+          "priority": 1
+        },
+        "by_function": {
+          "description": "Group assets by primary function or purpose",
+          "priority": 2
+        },
+        "by_environment": {
+          "description": "Group assets by deployment environment",
+          "priority": 3
+        },
+        "by_asset_type": {
+          "description": "Group assets by type (hardware, software, etc.)",
+          "priority": 4
+        }
+      }
+    },
+    "component_type_mappings": {
+      "hardware": {
+        "oscal_type": "hardware",
+        "keywords": ["server", "router", "switch", "firewall", "load balancer", "storage"]
+      },
+      "software": {
+        "oscal_type": "software",
+        "keywords": ["application", "service", "database", "middleware", "operating system"]
+      },
+      "data": {
+        "oscal_type": "software",
+        "keywords": ["database", "data store", "repository", "file system"]
+      },
+      "network": {
+        "oscal_type": "hardware", 
+        "keywords": ["network", "connectivity", "communication", "transport"]
+      },
+      "service": {
+        "oscal_type": "service",
+        "keywords": ["service", "api", "web service", "microservice"]
+      }
+    },
+    "security_mappings": {
+      "criticality_to_impact": {
+        "Critical": {
+          "confidentiality_impact": "high",
+          "integrity_impact": "high",
+          "availability_impact": "high"
+        },
+        "High": {
+          "confidentiality_impact": "high",
+          "integrity_impact": "moderate",
+          "availability_impact": "moderate"
+        },
+        "Moderate": {
+          "confidentiality_impact": "moderate",
+          "integrity_impact": "moderate", 
+          "availability_impact": "low"
+        },
+        "Low": {
+          "confidentiality_impact": "low",
+          "integrity_impact": "low",
+          "availability_impact": "low"
+        }
+      },
+      "risk_factors": {
+        "public_access": {
+          "multiplier": 2.0,
+          "description": "Assets with public access have increased risk exposure"
+        },
+        "production_environment": {
+          "multiplier": 1.5,
+          "description": "Production assets have higher impact if compromised"
+        },
+        "high_criticality": {
+          "multiplier": 1.8,
+          "description": "High criticality assets require enhanced protection"
+        }
+      }
+    },
+    "control_inheritance": {
+      "infrastructure_controls": [
+        "PE-1", "PE-2", "PE-3", "PE-6", "PE-8",
+        "SC-7", "SC-8", "SC-12", "SC-13"
+      ],
+      "platform_controls": [
+        "AC-2", "AC-3", "AC-6", "AU-2", "AU-3",
+        "CM-2", "CM-6", "CM-7", "IA-2", "IA-4"
+      ],
+      "inheritance_mappings": {
+        "cloud_infrastructure": {
+          "inherited_controls": "infrastructure_controls",
+          "provider_responsibility": "full"
+        },
+        "platform_services": {
+          "inherited_controls": "platform_controls",
+          "provider_responsibility": "shared"
+        }
+      }
+    }
+  },
+  "quality_assurance": {
+    "data_validation": {
+      "completeness_checks": {
+        "required_field_threshold": 0.95,
+        "critical_fields": ["asset_id", "asset_name", "asset_type", "environment", "criticality"]
+      },
+      "consistency_checks": {
+        "unique_asset_ids": true,
+        "valid_ip_addresses": true,
+        "consistent_naming": true
+      },
+      "relationship_validation": {
+        "owner_exists": true,
+        "environment_consistency": true,
+        "network_topology_validation": false
+      }
+    },
+    "normalization_rules": {
+      "asset_id_format": {
+        "pattern": "^[a-z0-9-]+$",
+        "transformation": "lowercase, replace spaces with hyphens"
+      },
+      "ip_address_format": {
+        "validate_format": true,
+        "remove_whitespace": true
+      },
+      "boolean_normalization": {
+        "true_values": ["yes", "y", "true", "1", "on"],
+        "false_values": ["no", "n", "false", "0", "off"]
+      }
+    }
+  },
+  "documentation_generation": {
+    "component_documentation": {
+      "include_source_attribution": true,
+      "generate_descriptions": true,
+      "include_relationships": true
+    },
+    "inventory_reports": {
+      "summary_by_environment": true,
+      "criticality_distribution": true,
+      "public_facing_assets": true,
+      "compliance_gaps": true
+    }
+  }
+}
