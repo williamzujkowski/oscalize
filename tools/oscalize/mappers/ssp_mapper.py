@@ -102,8 +102,7 @@ class SSPMapper(BaseMapper):
         """Build import-profile section"""
         # Default to FedRAMP Low baseline
         return {
-            "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json",
-            "description": "FedRAMP Low Baseline Profile"
+            "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json"
         }
     
     def _build_system_characteristics(self, document: Dict[str, Any], 
@@ -168,7 +167,12 @@ class SSPMapper(BaseMapper):
                 "uuid": self.generate_uuid(),
                 "title": "General Business Information",
                 "description": "General business information processed by the system",
-                "categorizations": [],
+                "categorizations": [
+                    {
+                        "system": "https://doi.org/10.6028/NIST.SP.800-60v1r1",
+                        "information-type-ids": ["C.2.8.12"]
+                    }
+                ],
                 "confidentiality-impact": {"base": "moderate"},
                 "integrity-impact": {"base": "moderate"}, 
                 "availability-impact": {"base": "low"}
@@ -339,9 +343,9 @@ class SSPMapper(BaseMapper):
         # Extract control implementations from document sections
         implemented_requirements = self._extract_control_implementations(sections)
         
-        # Add POA&M items as findings
+        # Add POA&M-referenced controls (without findings - handled separately in POA&M artifact)
         if poam.get("rows"):
-            self._add_poam_findings(implemented_requirements, poam["rows"])
+            self._add_poam_controls(implemented_requirements, poam["rows"])
         
         return {
             "description": "Control implementation descriptions extracted from source documents.",
@@ -377,12 +381,15 @@ class SSPMapper(BaseMapper):
         
         return implementations
     
-    def _add_poam_findings(self, implementations: List[Dict[str, Any]], poam_rows: List[Dict[str, Any]]) -> None:
-        """Add POA&M items as findings to control implementations"""
+    def _add_poam_controls(self, implementations: List[Dict[str, Any]], poam_rows: List[Dict[str, Any]]) -> None:
+        """Add POA&M-referenced controls to implementations (without findings)"""
         for poam_item in poam_rows:
             control_ids = poam_item.get("control_ids", [])
             
             for control_id in control_ids:
+                if not control_id:
+                    continue
+                
                 # Find matching implementation or create new one
                 impl = None
                 for existing_impl in implementations:
@@ -395,35 +402,18 @@ class SSPMapper(BaseMapper):
                     impl = {
                         "uuid": self.generate_uuid(),
                         "control-id": control_id,
-                        "description": f"Control {control_id} - see findings",
                         "props": [
                             self.create_property("implementation-status", "partially-implemented")
                         ],
-                        "statements": []
+                        "statements": [
+                            {
+                                "statement-id": f"{control_id}_stmt",
+                                "uuid": self.generate_uuid(),
+                                "remarks": f"Control {control_id} implementation has open POA&M items. See POA&M artifact for details."
+                            }
+                        ]
                     }
                     implementations.append(impl)
-                
-                # Add finding
-                if "findings" not in impl:
-                    impl["findings"] = []
-                
-                finding = {
-                    "uuid": self.generate_uuid(),
-                    "title": poam_item.get("title", ""),
-                    "description": poam_item.get("description", ""),
-                    "props": [
-                        self.create_property("poam-id", poam_item.get("poam_id", "")),
-                        self.create_property("severity", poam_item.get("severity", "")),
-                        self.create_property("status", poam_item.get("status", ""))
-                    ]
-                }
-                
-                if poam_item.get("scheduled_completion_date"):
-                    finding["props"].append(
-                        self.create_property("scheduled-completion-date", poam_item["scheduled_completion_date"])
-                    )
-                
-                impl["findings"].append(finding)
     
     def _build_back_matter(self, cir_data: Dict[str, Any]) -> Dict[str, Any]:
         """Build back-matter section with source documents"""

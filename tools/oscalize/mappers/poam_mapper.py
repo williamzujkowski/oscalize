@@ -150,7 +150,7 @@ class POAMMapper(BaseMapper):
                         "actors": [
                             {
                                 "type": "party",
-                                "party-uuid": self.generate_uuid(),  # Should reference actual party
+                                "actor-uuid": self.generate_uuid(),
                                 "props": [
                                     self.create_property("origin-type", "assessment")
                                 ]
@@ -158,17 +158,6 @@ class POAMMapper(BaseMapper):
                         ]
                     }
                 ]
-            
-            # Add implementation status
-            status = row.get("status", "Open")
-            item["implementation-status"] = {
-                "state": self.status_mappings.get(status, "open")
-            }
-            
-            # Add milestones
-            milestones = row.get("milestones", [])
-            if milestones:
-                item["milestones"] = self._build_milestones(milestones)
             
             poam_items.append(item)
         
@@ -222,14 +211,7 @@ class POAMMapper(BaseMapper):
             "finding-uuid": self.generate_uuid()
         }
         
-        # Add control associations
-        control_ids = row.get("control_ids", [])
-        if control_ids:
-            finding["related-controls"] = []
-            for control_id in control_ids:
-                finding["related-controls"].append({
-                    "control-id": control_id
-                })
+        # Note: control associations handled via props in POA&M item, not related-controls
         
         findings.append(finding)
         return findings

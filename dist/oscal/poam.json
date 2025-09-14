@@ -1,10 +1,10 @@
 {
   "plan-of-action-and-milestones": {
-    "uuid": "b5e20d14-3e8f-4c5a-811a-be5e9c0f03a2",
+    "uuid": "69dd847a-bf7d-4be2-bf2b-87c3fda0eaf8",
     "metadata": {
       "title": "Plan of Action and Milestones (POA&M)",
-      "published": "2025-09-07T03:05:31.281557Z",
-      "last-modified": "2025-09-07T03:05:31.281557Z",
+      "published": "2025-09-14T02:02:04.034435Z",
+      "last-modified": "2025-09-14T02:02:04.034435Z",
       "version": "1.0",
       "oscal-version": "1.1.3",
       "props": [
@@ -22,7 +22,7 @@
         },
         {
           "name": "extraction-date",
-          "value": "2025-09-07T03:05:31.242803Z"
+          "value": "2025-09-14T02:02:03.984999Z"
         },
         {
           "name": "file-hash",
@@ -32,12 +32,12 @@
     },
     "system-id": {
       "identifier-type": "https://ietf.org/rfc/rfc4122",
-      "id": "508dac31-db75-4da6-90b0-f305e9b2be3d"
+      "id": "c2167f3e-ada4-4dc7-8c18-446c1c67125a"
     },
     "local-definitions": {
       "components": [
         {
-          "uuid": "0a97cb6e-e8f3-47f9-905c-11a07dcca8a1",
+          "uuid": "72aa6ca1-520a-4b18-8b0e-015e567f6c6f",
           "type": "software",
           "title": "admin-portal",
           "description": "Component referenced in POA&M: admin-portal",
@@ -46,7 +46,7 @@
           }
         },
         {
-          "uuid": "d0e020aa-29f7-4b9b-a813-95346f20935a",
+          "uuid": "72df0796-f696-4b4b-9037-e2b18f39cb1c",
           "type": "software",
           "title": "all-production-systems",
           "description": "Component referenced in POA&M: all-production-systems",
@@ -55,7 +55,7 @@
           }
         },
         {
-          "uuid": "3302ea7b-ccb2-4d83-b65e-1b5775fdf77b",
+          "uuid": "4d3a254a-dae2-4035-a719-013de89ab528",
           "type": "software",
           "title": "central-logging-system",
           "description": "Component referenced in POA&M: central-logging-system",
@@ -64,7 +64,7 @@
           }
         },
         {
-          "uuid": "b4290a13-a62a-4fad-be0d-8b44a8740f3a",
+          "uuid": "e65582e9-3767-4a27-9c85-dbf9ae9d1dc5",
           "type": "software",
           "title": "incident-response-team",
           "description": "Component referenced in POA&M: incident-response-team",
@@ -73,7 +73,7 @@
           }
         },
         {
-          "uuid": "67b8f483-2fd1-4083-a8fb-6f2815e85bdc",
+          "uuid": "f919ff46-09e6-4450-8bdb-6f7df51e9de1",
           "type": "software",
           "title": "production-database",
           "description": "Component referenced in POA&M: production-database",
@@ -85,7 +85,7 @@
     },
     "poam-items": [
       {
-        "uuid": "19277326-6c3c-471b-a144-96c1f5908624",
+        "uuid": "d4a020bc-d817-4e58-80be-82391efafd1b",
         "title": "Multi-factor authentication not enforced for all admin accounts",
         "description": "Configure MFA enforcement in identity provider and update admin procedures",
         "props": [
@@ -120,17 +120,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "54426aa2-9d7f-4b38-9502-f32afe3eca3d",
-            "related-controls": [
-              {
-                "control-id": "IA-2"
-              }
-            ]
+            "finding-uuid": "0d21f6e0-1b3e-4d6f-808a-e68a89ed6050"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "3d4a9de1-ba03-43fc-9de9-fff21c85403f"
+            "risk-uuid": "51642663-b798-4d35-b89f-8da94beeb2c5"
           }
         ],
         "origins": [
@@ -138,7 +133,7 @@
             "actors": [
               {
                 "type": "party",
-                "party-uuid": "140ae2ce-8298-484c-b6df-09d36b15cdea",
+                "actor-uuid": "6b2a8ce2-eadc-4ccf-a70c-c1da9c206cea",
                 "props": [
                   {
                     "name": "origin-type",
@@ -148,31 +143,10 @@
               }
             ]
           }
-        ],
-        "implementation-status": {
-          "state": "open"
-        },
-        "milestones": [
-          {
-            "uuid": "dd5616fd-3040-4599-957c-57f248b8f8aa",
-            "title": "Configure MFA in identity provider",
-            "description": "Configure MFA in identity provider",
-            "props": [
-              {
-                "name": "target-date",
-                "value": "2024-11-15"
-              },
-              {
-                "name": "milestone-status",
-                "value": "pending"
-              }
-            ],
-            "target-date": "2024-11-15"
-          }
         ]
       },
       {
-        "uuid": "85d60937-a316-4073-9dad-97dc3a478eaa",
+        "uuid": "e43ad198-7df3-4b44-bfef-7f49c5147574",
         "title": "Audit log retention period insufficient",
         "description": "Increase log retention period from 90 days to 1 year",
         "props": [
@@ -207,17 +181,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "e7ea46c6-e353-40f4-976a-5253b9d09163",
-            "related-controls": [
-              {
-                "control-id": "AU-11"
-              }
-            ]
+            "finding-uuid": "b0ef02a0-6c94-4cf8-ac5b-32cc339992c0"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "231fa9c1-930c-4d2c-bf8f-2fcd91029db3"
+            "risk-uuid": "563c332d-d188-4c0a-b33e-d718bd5c28a2"
           }
         ],
         "origins": [
@@ -225,7 +194,7 @@
             "actors": [
               {
                 "type": "party",
-                "party-uuid": "e9d7088d-ef83-4ab8-9566-8ca72e570026",
+                "actor-uuid": "9d11bb5f-7444-4ded-9cdc-8a5862215bfb",
                 "props": [
                   {
                     "name": "origin-type",
@@ -235,31 +204,10 @@
               }
             ]
           }
-        ],
-        "implementation-status": {
-          "state": "ongoing"
-        },
-        "milestones": [
-          {
-            "uuid": "0d4a8d18-268f-4f55-ac8e-608e74d53d24",
-            "title": "Update log retention configuration",
-            "description": "Update log retention configuration",
-            "props": [
-              {
-                "name": "target-date",
-                "value": "2024-10-30"
-              },
-              {
-                "name": "milestone-status",
-                "value": "completed"
-              }
-            ],
-            "target-date": "2024-10-30"
-          }
         ]
       },
       {
-        "uuid": "7959ba90-70c7-4ee5-aa19-c5bb71f44a4f",
+        "uuid": "32af6df7-e761-4b04-8d8e-6c3ec26aabc6",
         "title": "Vulnerability scanning frequency needs improvement",
         "description": "Configure automated weekly vulnerability scans",
         "props": [
@@ -294,17 +242,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "c9e7e8cb-34fc-4a92-8404-56e5638c68e4",
-            "related-controls": [
-              {
-                "control-id": "RA-5"
-              }
-            ]
+            "finding-uuid": "b2e00c52-e48a-45d5-a0c7-faad8786e93d"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "98950673-1db0-4793-9955-791280df6642"
+            "risk-uuid": "311edea7-d2f0-4e8a-a113-154ab1d8284c"
           }
         ],
         "origins": [
@@ -312,7 +255,7 @@
             "actors": [
               {
                 "type": "party",
-                "party-uuid": "2fb3766a-b012-4d74-9749-0101f85c0b4b",
+                "actor-uuid": "dd6f9931-b185-4699-9620-ac5e45b8f5de",
                 "props": [
                   {
                     "name": "origin-type",
@@ -322,31 +265,10 @@
               }
             ]
           }
-        ],
-        "implementation-status": {
-          "state": "open"
-        },
-        "milestones": [
-          {
-            "uuid": "b9707861-c412-448b-b575-cc7e59109f1d",
-            "title": "Update scanning schedule",
-            "description": "Update scanning schedule",
-            "props": [
-              {
-                "name": "target-date",
-                "value": "2024-12-01"
-              },
-              {
-                "name": "milestone-status",
-                "value": "pending"
-              }
-            ],
-            "target-date": "2024-12-01"
-          }
         ]
       },
       {
-        "uuid": "e36a5376-8232-4c67-909d-415b5530de6e",
+        "uuid": "8c98984f-e71a-41d9-b431-35c480a65cff",
         "title": "Incident response procedures need annual review",
         "description": "Annual review and update of incident response procedures",
         "props": [
@@ -377,17 +299,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "94a93007-0c17-45a3-ae5e-19a0d79b7c0d",
-            "related-controls": [
-              {
-                "control-id": "IR-1"
-              }
-            ]
+            "finding-uuid": "95038707-033b-44e8-ba18-5af32eeb3e18"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "37f0a338-9216-48bf-a3f6-d4e62bd6a71e"
+            "risk-uuid": "089e2b87-9412-4466-aa42-4ba924baa09b"
           }
         ],
         "origins": [
@@ -395,7 +312,7 @@
             "actors": [
               {
                 "type": "party",
-                "party-uuid": "9fff1a5f-acc7-47f7-b5b9-c98f9004deba",
+                "actor-uuid": "c3f4cce6-2dfc-415a-a77a-c70d3fdcff51",
                 "props": [
                   {
                     "name": "origin-type",
@@ -405,31 +322,10 @@
               }
             ]
           }
-        ],
-        "implementation-status": {
-          "state": "risk-accepted"
-        },
-        "milestones": [
-          {
-            "uuid": "75d8c776-b2e5-4792-af9e-09a4a046d164",
-            "title": "Schedule annual review meeting",
-            "description": "Schedule annual review meeting",
-            "props": [
-              {
-                "name": "target-date",
-                "value": "2024-09-15"
-              },
-              {
-                "name": "milestone-status",
-                "value": "completed"
-              }
-            ],
-            "target-date": "2024-09-15"
-          }
         ]
       },
       {
-        "uuid": "4a87df74-797b-4141-9db0-80b9a3b9234a",
+        "uuid": "caeef80e-237f-4738-89bb-73b04019bde6",
         "title": "Database encryption keys require rotation",
         "description": "Implement automated key rotation for database encryption",
         "props": [
@@ -464,17 +360,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "01ae8ad2-905c-48b3-a011-962e2d0174be",
-            "related-controls": [
-              {
-                "control-id": "SC-12"
-              }
-            ]
+            "finding-uuid": "70687864-3f1a-41d3-bf83-2b39a67e6e7e"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "d5383888-c3a7-4b1c-9f70-8e8acb8352af"
+            "risk-uuid": "5da5e718-322c-423b-b03c-ecae364af460"
           }
         ],
         "origins": [
@@ -482,7 +373,7 @@
             "actors": [
               {
                 "type": "party",
-                "party-uuid": "0d8f1cee-7cbd-4cf1-9820-9856d4dbdc03",
+                "actor-uuid": "a316fa37-4833-4f22-ba6d-be9ccf392075",
                 "props": [
                   {
                     "name": "origin-type",
@@ -492,34 +383,13 @@
               }
             ]
           }
-        ],
-        "implementation-status": {
-          "state": "ongoing"
-        },
-        "milestones": [
-          {
-            "uuid": "0fa6fd29-eb28-4811-8242-cf7c1b3fc961",
-            "title": "Test key rotation procedure",
-            "description": "Test key rotation procedure",
-            "props": [
-              {
-                "name": "target-date",
-                "value": "2024-10-15"
-              },
-              {
-                "name": "milestone-status",
-                "value": "completed"
-              }
-            ],
-            "target-date": "2024-10-15"
-          }
         ]
       }
     ],
     "back-matter": {
       "resources": [
         {
-          "uuid": "517bf7ce-1bad-43cd-beae-ead935d3e435",
+          "uuid": "a815c1d4-50f0-4304-81df-0006f335d436",
           "title": "POA&M Source: poam_sample.xlsx",
           "rlinks": [
             {

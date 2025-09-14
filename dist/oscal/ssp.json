@@ -1,10 +1,10 @@
 {
   "system-security-plan": {
-    "uuid": "6b9bf118-5866-48af-8619-8e46673ad609",
+    "uuid": "af6190cb-2e50-482c-981d-69c08bcc15f4",
     "metadata": {
       "title": "System Security Plan",
-      "published": "2025-09-07T03:05:31.280441Z",
-      "last-modified": "2025-09-07T03:05:31.280441Z",
+      "published": "2025-09-14T02:02:04.033438Z",
+      "last-modified": "2025-09-14T02:02:04.033438Z",
       "version": "1.0",
       "oscal-version": "1.1.3",
       "props": [
@@ -18,7 +18,7 @@
         },
         {
           "name": "extraction-date",
-          "value": "2025-09-07T03:05:31.216134Z"
+          "value": "2025-09-14T02:02:03.956833Z"
         },
         {
           "name": "file-hash",
@@ -31,8 +31,7 @@
       ]
     },
     "import-profile": {
-      "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json",
-      "description": "FedRAMP Low Baseline Profile"
+      "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json"
     },
     "system-characteristics": {
       "system-ids": [
@@ -49,10 +48,17 @@
       "system-information": {
         "information-types": [
           {
-            "uuid": "6183393d-f5d1-4850-b7a5-0d102b0704a8",
+            "uuid": "c52130c9-e046-47f3-a35b-f929c530bf37",
             "title": "General Business Information",
             "description": "General business information processed by the system",
-            "categorizations": [],
+            "categorizations": [
+              {
+                "system": "https://doi.org/10.6028/NIST.SP.800-60v1r1",
+                "information-type-ids": [
+                  "C.2.8.12"
+                ]
+              }
+            ],
             "confidentiality-impact": {
               "base": "moderate"
             },
@@ -78,7 +84,7 @@
     "system-implementation": {
       "users": [
         {
-          "uuid": "581de739-9794-4b83-99b2-c468d05850a4",
+          "uuid": "db5f50d6-fc6f-407c-b9e3-47f4afe4b25c",
           "title": "System Administrator",
           "description": "Administrative access to system components",
           "role-ids": [
@@ -106,7 +112,7 @@
           ]
         },
         {
-          "uuid": "73d0b1c8-f223-45f1-99d4-e1c1552b13d7",
+          "uuid": "2aac28da-d945-467a-8079-0dc804b53301",
           "title": "System User",
           "description": "Standard user access to system",
           "role-ids": [
@@ -130,7 +136,7 @@
       ],
       "components": [
         {
-          "uuid": "67fc51b0-bef7-4478-a416-38c6a5775c7c",
+          "uuid": "3d880015-8059-4806-a91d-be859914c418",
           "type": "software",
           "title": "Software Components",
           "description": "Components of type: software",
@@ -160,7 +166,7 @@
           ]
         },
         {
-          "uuid": "c6005d6c-0e20-4c42-a24e-dcc469344ece",
+          "uuid": "81d5d2dd-e0c6-4335-82a7-8255b70b2413",
           "type": "hardware",
           "title": "Hardware Components",
           "description": "Components of type: hardware",
@@ -190,7 +196,7 @@
           ]
         },
         {
-          "uuid": "66e91015-8142-4502-bec0-0adb3519f302",
+          "uuid": "58e663b1-dac6-46d0-b841-b7fd7f19eda1",
           "type": "service",
           "title": "Service Components",
           "description": "Components of type: service",
@@ -222,7 +228,7 @@
       ],
       "inventory-items": [
         {
-          "uuid": "e2630614-d57e-45ff-8a19-5527667607d5",
+          "uuid": "803aedbd-5e48-4583-829c-094da80f8f6c",
           "description": "React-based web application frontend",
           "props": [
             {
@@ -248,7 +254,7 @@
           ],
           "implemented-components": [
             {
-              "component-uuid": "4ebe31cf-d54f-4bc0-a58e-be0f5c0a7af9",
+              "component-uuid": "98bcb942-9294-4a5a-b29b-189ae4e71dc3",
               "props": [
                 {
                   "name": "asset-id",
@@ -259,7 +265,7 @@
           ]
         },
         {
-          "uuid": "e0d9e4b6-174d-4631-a4ed-187f6f664727",
+          "uuid": "561d5a42-cdb9-45eb-ae33-3984f1624af2",
           "description": "RESTful API gateway service",
           "props": [
             {
@@ -285,7 +291,7 @@
           ],
           "implemented-components": [
             {
-              "component-uuid": "b5de9ea9-73bc-4110-bb5d-1b948a1047c7",
+              "component-uuid": "c1005902-f009-4715-a9fb-1f5d1f8aa828",
               "props": [
                 {
                   "name": "asset-id",
@@ -296,7 +302,7 @@
           ]
         },
         {
-          "uuid": "1768bfa6-331e-4d5b-a1b5-dcfc61e53df3",
+          "uuid": "20bb042a-00bf-4c73-b8a7-8129189a1d31",
           "description": "PostgreSQL primary database",
           "props": [
             {
@@ -322,7 +328,7 @@
           ],
           "implemented-components": [
             {
-              "component-uuid": "bfc463b3-aee3-46d8-9d8a-41ae954739b5",
+              "component-uuid": "77436edb-9028-4085-a9b2-63f8215f254b",
               "props": [
                 {
                   "name": "asset-id",
@@ -333,7 +339,7 @@
           ]
         },
         {
-          "uuid": "2c01e570-8b61-4974-b5cd-ac7e45c27302",
+          "uuid": "02a08430-0245-46a0-9709-03a39bfab77a",
           "description": "PostgreSQL read replica",
           "props": [
             {
@@ -359,7 +365,7 @@
           ],
           "implemented-components": [
             {
-              "component-uuid": "a3985327-eb87-4a18-9fd7-29ae271e644b",
+              "component-uuid": "6a81d191-5327-43f8-8fdd-c1d3372645b8",
               "props": [
                 {
                   "name": "asset-id",
@@ -370,7 +376,7 @@
           ]
         },
         {
-          "uuid": "a0e900fd-b3a0-42b3-88a7-b17460e91875",
+          "uuid": "7a50db39-0bbc-4e17-b904-618d6b4b115c",
           "description": "Application load balancer",
           "props": [
             {
@@ -396,7 +402,7 @@
           ],
           "implemented-components": [
             {
-              "component-uuid": "f8f029b9-e376-45f8-ad07-7b580060518a",
+              "component-uuid": "c6c8e5a1-19a1-4b33-9a48-505bd75e7d9d",
               "props": [
                 {
                   "name": "asset-id",
@@ -407,7 +413,7 @@
           ]
         },
         {
-          "uuid": "d5763d46-06c0-4f4a-a8e4-103fac9873b8",
+          "uuid": "8435b3bb-30d1-4d1a-8772-4590c0bd9aeb",
           "description": "Multi-factor authentication service",
           "props": [
             {
@@ -433,7 +439,7 @@
           ],
           "implemented-components": [
             {
-              "component-uuid": "5dcc7537-c50e-4dac-b6f7-afdbb1bf132e",
+              "component-uuid": "aa6c5163-c74a-4985-9d1c-6d5b9273d67a",
               "props": [
                 {
                   "name": "asset-id",
@@ -449,7 +455,7 @@
       "description": "Control implementation descriptions extracted from source documents.",
       "implemented-requirements": [
         {
-          "uuid": "f812515d-e764-4667-9347-d340882946f2",
+          "uuid": "dbdcfc3f-4e1b-4b9f-a7e2-37d54d16a9ba",
           "control-id": "AC-1",
           "props": [
             {
@@ -464,13 +470,13 @@
           "statements": [
             {
               "statement-id": "AC-1_stmt",
-              "uuid": "dcf29b8d-d4dc-4cef-95ba-a47d31205f33",
+              "uuid": "2a660058-0a5d-49a2-9016-6642a30c8226",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:The organization has implemented comprehensive access control policies and procedures. All user access is managed through centrally managed identity providers with multi-factor authentication required for all administrative access.\n\nResponsible Role: Security Team, System Administrator\n\nAssessment Procedures:- Review access control policies annually- Test authentication mechanisms quarterly- Audit user access logs monthly\n\n"
             }
           ]
         },
         {
-          "uuid": "caff2aed-7cb4-48a4-aafd-e859212491e3",
+          "uuid": "f489168d-3f95-44ed-858a-f4de9d420b9a",
           "control-id": "AC-2",
           "props": [
             {
@@ -485,13 +491,13 @@
           "statements": [
             {
               "statement-id": "AC-2_stmt",
-              "uuid": "f7660eab-afb3-4e03-93e8-b61a4f2359a1",
+              "uuid": "435929a5-659f-4421-a7f4-9eab084dde13",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:User accounts are managed through automated provisioning systems. Account creation, modification, and deletion are logged and monitored. Privileged accounts require additional approval workflows.\n\nResponsible Role: Identity Management Team\n\n"
             }
           ]
         },
         {
-          "uuid": "3cce5bcb-6781-4a93-a919-bfe6f7c4b9f8",
+          "uuid": "048fc617-ea57-4035-815c-199baf934244",
           "control-id": "AU-1",
           "props": [
             {
@@ -506,13 +512,13 @@
           "statements": [
             {
               "statement-id": "AU-1_stmt",
-              "uuid": "e021fdae-b296-4bc7-8892-9a1e151f0ab3",
+              "uuid": "0bc43b84-c636-479f-a0a9-944b7becf468",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:Comprehensive audit logging is implemented across all system components. Logs are centrally collected, monitored, and retained for compliance requirements.\n\n"
             }
           ]
         },
         {
-          "uuid": "4b301831-1ff5-4191-b381-972de588fbad",
+          "uuid": "2680408f-c1e2-4236-b12d-e6da4e839b22",
           "control-id": "IA-2",
           "props": [
             {
@@ -527,177 +533,76 @@
           "statements": [
             {
               "statement-id": "IA-2_stmt",
-              "uuid": "5c79b9eb-cc17-40de-af4f-ebca697068ba",
+              "uuid": "270cbf12-6702-4c89-81e5-98c202b3acd8",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:All users must authenticate using multi-factor authentication (MFA). Authentication integrates with organizational identity providers supporting SAML 2.0 and OpenID Connect.\n\n"
             }
-          ],
-          "findings": [
-            {
-              "uuid": "77428b6d-056f-42c0-8b28-2e2b3d74bc14",
-              "title": "Multi-factor authentication not enforced for all admin accounts",
-              "description": "Configure MFA enforcement in identity provider and update admin procedures",
-              "props": [
-                {
-                  "name": "poam-id",
-                  "value": "POAM-001"
-                },
-                {
-                  "name": "severity",
-                  "value": "High"
-                },
-                {
-                  "name": "status",
-                  "value": "Open"
-                },
-                {
-                  "name": "scheduled-completion-date",
-                  "value": "2024-12-31"
-                }
-              ]
-            }
           ]
         },
         {
-          "uuid": "211c407a-4ff8-41bd-8f6c-a95608d37fe8",
+          "uuid": "5efe8c03-85f0-4fc0-9f2f-7d1f734980dd",
           "control-id": "AU-11",
-          "description": "Control AU-11 - see findings",
           "props": [
             {
               "name": "implementation-status",
               "value": "partially-implemented"
             }
           ],
-          "statements": [],
-          "findings": [
+          "statements": [
             {
-              "uuid": "04ca4a51-bb64-483e-9aca-97e2db2008b8",
-              "title": "Audit log retention period insufficient",
-              "description": "Increase log retention period from 90 days to 1 year",
-              "props": [
-                {
-                  "name": "poam-id",
-                  "value": "POAM-002"
-                },
-                {
-                  "name": "severity",
-                  "value": "Moderate"
-                },
-                {
-                  "name": "status",
-                  "value": "Ongoing"
-                },
-                {
-                  "name": "scheduled-completion-date",
-                  "value": "2024-11-30"
-                }
-              ]
+              "statement-id": "AU-11_stmt",
+              "uuid": "3803c94a-0506-482b-b06d-3c41f388b958",
+              "remarks": "Control AU-11 implementation has open POA&M items. See POA&M artifact for details."
             }
           ]
         },
         {
-          "uuid": "3a25d82c-1e2a-457a-854e-5eb1e03ab140",
+          "uuid": "519a00ff-37f0-43ed-b016-aeec61680615",
           "control-id": "RA-5",
-          "description": "Control RA-5 - see findings",
           "props": [
             {
               "name": "implementation-status",
               "value": "partially-implemented"
             }
           ],
-          "statements": [],
-          "findings": [
+          "statements": [
             {
-              "uuid": "35faf0f1-982f-495f-a543-7fc65d182680",
-              "title": "Vulnerability scanning frequency needs improvement",
-              "description": "Configure automated weekly vulnerability scans",
-              "props": [
-                {
-                  "name": "poam-id",
-                  "value": "POAM-003"
-                },
-                {
-                  "name": "severity",
-                  "value": "Low"
-                },
-                {
-                  "name": "status",
-                  "value": "Open"
-                },
-                {
-                  "name": "scheduled-completion-date",
-                  "value": "2025-01-15"
-                }
-              ]
+              "statement-id": "RA-5_stmt",
+              "uuid": "9540447b-04e3-47eb-ac6c-af9fe902350e",
+              "remarks": "Control RA-5 implementation has open POA&M items. See POA&M artifact for details."
             }
           ]
         },
         {
-          "uuid": "3414de47-1801-411d-bbfe-26097786cb6e",
+          "uuid": "6fa1c813-5371-4202-98ac-1f0bbad42316",
           "control-id": "IR-1",
-          "description": "Control IR-1 - see findings",
           "props": [
             {
               "name": "implementation-status",
               "value": "partially-implemented"
             }
           ],
-          "statements": [],
-          "findings": [
+          "statements": [
             {
-              "uuid": "f9a17ee3-c486-4085-bf8c-71059ef5b962",
-              "title": "Incident response procedures need annual review",
-              "description": "Annual review and update of incident response procedures",
-              "props": [
-                {
-                  "name": "poam-id",
-                  "value": "POAM-004"
-                },
-                {
-                  "name": "severity",
-                  "value": "Moderate"
-                },
-                {
-                  "name": "status",
-                  "value": "Risk Accepted"
-                }
-              ]
+              "statement-id": "IR-1_stmt",
+              "uuid": "51ff1e02-b73d-4230-bced-f16ee59aa7cc",
+              "remarks": "Control IR-1 implementation has open POA&M items. See POA&M artifact for details."
             }
           ]
         },
         {
-          "uuid": "6cc40b2b-6a12-48a3-8eed-6032b06daecb",
+          "uuid": "a522065c-f541-4cec-b995-8fe9cfd8739b",
           "control-id": "SC-12",
-          "description": "Control SC-12 - see findings",
           "props": [
             {
               "name": "implementation-status",
               "value": "partially-implemented"
             }
           ],
-          "statements": [],
-          "findings": [
+          "statements": [
             {
-              "uuid": "e1d8d8e8-6867-48cc-9ff2-bff67ece6e87",
-              "title": "Database encryption keys require rotation",
-              "description": "Implement automated key rotation for database encryption",
-              "props": [
-                {
-                  "name": "poam-id",
-                  "value": "POAM-005"
-                },
-                {
-                  "name": "severity",
-                  "value": "High"
-                },
-                {
-                  "name": "status",
-                  "value": "Ongoing"
-                },
-                {
-                  "name": "scheduled-completion-date",
-                  "value": "2024-10-31"
-                }
-              ]
+              "statement-id": "SC-12_stmt",
+              "uuid": "13403ad5-1338-4489-967b-c6713c979cf9",
+              "remarks": "Control SC-12 implementation has open POA&M items. See POA&M artifact for details."
             }
           ]
         }
@@ -706,7 +611,7 @@
     "back-matter": {
       "resources": [
         {
-          "uuid": "88032ed7-744a-4a4f-9f26-955040852ac2",
+          "uuid": "a85e6a80-ef85-4c9f-b739-4718799cb480",
           "title": "Source Document: sample_ssp.md",
           "rlinks": [
             {
@@ -716,7 +621,7 @@
           "description": "Original document file used for OSCAL generation"
         },
         {
-          "uuid": "dd3a12d1-2fcc-47d1-8f30-0c79db817b19",
+          "uuid": "2fdf6265-dbf1-4901-a192-11c2a4900962",
           "title": "Source Poam: poam_sample.xlsx",
           "rlinks": [
             {
@@ -726,7 +631,7 @@
           "description": "Original poam file used for OSCAL generation"
         },
         {
-          "uuid": "53d9292f-578c-457c-bcdc-7af2fed13957",
+          "uuid": "fd2eab00-a306-4c8b-9eaa-6bb9bd04766f",
           "title": "Source Inventory: inventory_sample.xlsx",
           "rlinks": [
             {
