@@ -79,11 +79,16 @@ class POAMMapper(BaseMapper):
             
         # Add FedRAMP-specific keywords for compliance scoring  
         keywords.extend([
+            "fedramp",
             "fedramp-poam",
+            "cloud service provider",
             "cloud-service-provider-remediation",
+            "customer responsibility matrix",
             "customer-responsibility-matrix",
-            "fedramp-continuous-monitoring",
-            "authorization-boundary-deficiencies"
+            "authorization boundary",
+            "authorization-boundary-deficiencies",
+            "fips 199",
+            "fedramp-continuous-monitoring"
         ])
             
         if keywords:

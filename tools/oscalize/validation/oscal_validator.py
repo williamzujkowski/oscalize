@@ -13,6 +13,11 @@ from typing import Any, Dict, List, Optional, Tuple
 
 logger = logging.getLogger(__name__)
 
+# Timeout constants (in seconds)
+DEFAULT_VALIDATION_TIMEOUT = 60
+CONVERSION_TIMEOUT = 60  
+PROFILE_RESOLUTION_TIMEOUT = 120
+
 
 class OSCALValidator:
     """Validator for OSCAL artifacts using NIST oscal-cli"""
@@ -44,13 +49,21 @@ class OSCALValidator:
         if not file_path.exists():
             return self._create_error_result(f"File not found: {file_path}")
         
+        # Detect OSCAL document type for proper oscal-cli command
+        doc_type = self._detect_oscal_type(file_path)
+        if not doc_type:
+            return self._create_error_result(
+                f"Could not determine OSCAL document type for {file_path}. "
+                "File may not be valid OSCAL JSON or may contain unsupported document type."
+            )
+        
         try:
-            # Run oscal-cli validate command
+            # Run oscal-cli <document_type> validate command  
             result = subprocess.run(
-                [self.oscal_cli_path, "validate", str(file_path)],
+                [self.oscal_cli_path, doc_type, "validate", str(file_path)],
                 capture_output=True,
                 text=True,
-                timeout=60  # 60 second timeout
+                timeout=DEFAULT_VALIDATION_TIMEOUT
             )
             
             return self._parse_validation_result(file_path, result)
@@ -120,7 +133,7 @@ class OSCALValidator:
                 capture_output=True,
                 text=True,
                 check=True,
-                timeout=60
+                timeout=CONVERSION_TIMEOUT
             )
             
             logger.info(f"Conversion successful: {output_file}")
@@ -147,7 +160,7 @@ class OSCALValidator:
                 capture_output=True,
                 text=True,
                 check=True,
-                timeout=120  # Profiles can take longer
+                timeout=PROFILE_RESOLUTION_TIMEOUT
             )
             
             logger.info(f"Profile resolution successful: {output_file}")
@@ -262,3 +275,34 @@ class OSCALValidator:
             
         except subprocess.CalledProcessError:
             return ["json", "xml", "yaml"]  # Default supported formats
+    
+    def _detect_oscal_type(self, file_path: Path) -> Optional[str]:
+        """Detect OSCAL document type for validation"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = json.load(f)
+            
+            type_mapping = {
+                "system-security-plan": "ssp",
+                "plan-of-action-and-milestones": "poam",
+                "assessment-plan": "ap",
+                "assessment-results": "ar",
+                "catalog": "catalog",
+                "profile": "profile",
+                "component-definition": "component-definition"
+            }
+            
+            for oscal_key, cli_type in type_mapping.items():
+                if oscal_key in content:
+                    logger.debug(f"Detected OSCAL type '{cli_type}' for {file_path}")
+                    return cli_type
+            
+            logger.warning(f"No recognized OSCAL document type found in {file_path}")
+            return None
+            
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in {file_path}: {e}")
+            return None
+        except IOError as e:
+            logger.error(f"Could not read file {file_path}: {e}")
+            return None

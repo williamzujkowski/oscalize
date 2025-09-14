@@ -127,6 +127,8 @@ oscalize/                         # LLM-free local OSCAL converter for FedRAMP c
 ├── README.md                     # project overview, quick start, and installation
 ├── project_plan.md               # development planning and milestone tracking
 ├── LICENSE.md                    # Apache 2.0 license
+├── .gitignore                    # git ignore patterns for generated files and caches
+├── .dockerignore                 # Docker build context exclusions
 │
 ├── tools/oscalize/               # 🔧 CORE CONVERTER: readers → CIR → mappers → OSCAL
 │   ├── __init__.py               # package initialization
@@ -215,7 +217,7 @@ oscalize/                         # LLM-free local OSCAL converter for FedRAMP c
 │   │   └── test_config.json      # test configuration & metadata
 │   └── corpus_manifest.json      # auto-generated test case inventory
 │
-├── refs/                         # 📚 AUTHORITATIVE REFERENCES & CACHED DOCS
+├── refs/                         # 📚 AUTHORITATIVE REFERENCES & CACHED DOCS (optional)
 │   └── [PDFs/HTML for compliance citations - OMB M-24-15, NIST docs, FedRAMP]
 │
 ├── tools/oscal-cli/             # 🔗 NIST OSCAL-CLI (downloaded during Docker build)

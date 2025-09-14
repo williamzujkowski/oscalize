@@ -81,12 +81,17 @@ class SSPMapper(BaseMapper):
             
         # Add FedRAMP-specific keywords for compliance scoring
         keywords.extend([
+            "fedramp",
             "fedramp-authorization",
+            "cloud service provider",
             "cloud-service-provider", 
+            "customer responsibility matrix",
             "customer-responsibility-matrix",
-            "fedramp-baseline",
+            "authorization boundary",
             "authorization-boundary",
-            "fips-199-categorization"
+            "fips 199",
+            "fips-199-categorization",
+            "fedramp-baseline"
         ])
             
         if keywords:

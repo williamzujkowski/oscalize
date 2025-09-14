@@ -563,9 +563,9 @@ class EnhancedCorpusTester:
         }
         
         try:
-            # Use ValidationPipeline to validate outputs
+            # Use ValidationPipeline to validate outputs (use local validation when in container)
             pipeline = ValidationPipeline(test_dir)
-            results = pipeline.run_complete_validation(use_docker=True)
+            results = pipeline.run_complete_validation(use_docker=False, show_progress=False)
             
             actual_status = results.get("compliance_analysis", {}).get("status", "UNKNOWN")
             validation_result["status"] = actual_status

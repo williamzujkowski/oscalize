@@ -23,6 +23,10 @@ from .validation_reporter import ValidationReporter
 
 logger = logging.getLogger(__name__)
 
+# Timeout constants (in seconds)
+DOCKER_CHECK_TIMEOUT = 10
+DOCKER_VALIDATION_TIMEOUT = 120
+
 
 class ValidationPipeline:
     """Enhanced OSCAL validation pipeline with comprehensive error reporting"""
@@ -69,7 +73,8 @@ class ValidationPipeline:
     
     def run_complete_validation(self, 
                               use_docker: bool = False,
-                              oscal_cli_path: str = "oscal-cli") -> Dict[str, Any]:
+                              oscal_cli_path: str = "oscal-cli",
+                              show_progress: bool = True) -> Dict[str, Any]:
         """Run complete validation pipeline with enhanced error reporting"""
         self.start_time = time.time()
         
@@ -92,7 +97,7 @@ class ValidationPipeline:
                 
                 # Phase 3: Run validation for each file
                 status.update("[bold blue]Running OSCAL validation...")
-                validation_results = self._run_validation_batch(oscal_files, use_docker, oscal_cli_path)
+                validation_results = self._run_validation_batch(oscal_files, use_docker, oscal_cli_path, show_progress)
                 
                 # Phase 4: Generate comprehensive reports
                 status.update("[bold blue]Generating validation reports...")
@@ -137,7 +142,7 @@ class ValidationPipeline:
                 capture_output=True,
                 text=True,
                 check=True,
-                timeout=10
+                timeout=DOCKER_CHECK_TIMEOUT
             )
             logger.info(f"Docker available: {result.stdout.strip()}")
         except (subprocess.CalledProcessError, FileNotFoundError, subprocess.TimeoutExpired):
@@ -151,7 +156,7 @@ class ValidationPipeline:
                 capture_output=True,
                 text=True,
                 check=True,
-                timeout=10
+                timeout=DOCKER_CHECK_TIMEOUT
             )
             logger.info(f"oscal-cli available: {result.stdout.strip()}")
             self.validator = OSCALValidator(oscal_cli_path)
@@ -205,27 +210,55 @@ class ValidationPipeline:
     def _run_validation_batch(self, 
                             oscal_files: List[Path], 
                             use_docker: bool,
-                            oscal_cli_path: str) -> Dict[str, Dict[str, Any]]:
+                            oscal_cli_path: str,
+                            show_progress: bool = True) -> Dict[str, Dict[str, Any]]:
         """Run validation for batch of OSCAL files with enhanced error reporting"""
         results = {}
         
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            TimeElapsedColumn(),
-            console=self.console
-        ) as progress:
-            
-            validation_task = progress.add_task(
-                f"Validating {len(oscal_files)} OSCAL files...", 
-                total=len(oscal_files)
-            )
-            
-            for file_path in oscal_files:
-                progress.update(
-                    validation_task, 
-                    description=f"Validating {file_path.name}..."
+        if show_progress:
+            with Progress(
+                SpinnerColumn(),
+                TextColumn("[progress.description]{task.description}"),
+                TimeElapsedColumn(),
+                console=self.console
+            ) as progress:
+                
+                validation_task = progress.add_task(
+                    f"Validating {len(oscal_files)} OSCAL files...", 
+                    total=len(oscal_files)
                 )
+                
+                for file_path in oscal_files:
+                    progress.update(
+                        validation_task, 
+                        description=f"Validating {file_path.name}..."
+                    )
+                    
+                    try:
+                        if use_docker:
+                            result = self._validate_with_docker(file_path)
+                        else:
+                            result = self._validate_with_oscal_cli(file_path, oscal_cli_path)
+                        
+                        results[str(file_path)] = result
+                        
+                        # Log result
+                        if result["valid"]:
+                            logger.info(f"✓ {file_path.name} validation passed")
+                        else:
+                            logger.error(f"✗ {file_path.name} validation failed: {len(result['errors'])} errors")
+                            for error in result["errors"]:
+                                logger.error(f"  Error: {error}")
+                        
+                    except Exception as e:
+                        logger.exception(f"Failed to validate {file_path}: {e}")
+                        results[str(file_path)] = self._create_validation_error_result(file_path, str(e))
+                    
+                    progress.advance(validation_task)
+        else:
+            # Run without progress display
+            for file_path in oscal_files:
+                logger.info(f"Validating {file_path.name}...")
                 
                 try:
                     if use_docker:
@@ -246,8 +279,6 @@ class ValidationPipeline:
                 except Exception as e:
                     logger.exception(f"Failed to validate {file_path}: {e}")
                     results[str(file_path)] = self._create_validation_error_result(file_path, str(e))
-                
-                progress.advance(validation_task)
         
         return results
     
@@ -281,7 +312,7 @@ class ValidationPipeline:
                 docker_cmd,
                 capture_output=True,
                 text=True,
-                timeout=120
+                timeout=DOCKER_VALIDATION_TIMEOUT
             )
             
             return self._parse_oscal_cli_output(file_path, result, "docker")

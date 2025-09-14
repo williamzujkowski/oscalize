@@ -1,27 +1,27 @@
 {
   "plan-of-action-and-milestones": {
-    "uuid": "ac1bc0f3-e7d4-4682-9f6f-1baa619856d9",
+    "uuid": "a3608480-a679-411d-9095-203a4b72aeb9",
     "metadata": {
       "title": "Plan of Action and Milestones (POA&M) - FedRAMP Cloud Service Provider",
-      "published": "2025-09-14T03:02:36.856771Z",
-      "last-modified": "2025-09-14T03:02:36.856771Z",
+      "published": "2025-09-14T04:02:48.030826Z",
+      "last-modified": "2025-09-14T04:02:48.030826Z",
       "version": "1.0",
       "oscal-version": "1.1.3",
       "props": [
         {
           "name": "keywords",
-          "value": "source-file:inputs/poam_sample.xlsx, sheet-name:Sheet1, template-version:Unknown_v3.0_compatible, extraction-date:2025-09-14T03:02:36.785060Z, file-hash:9ba5177a35b7b2946ecada5169b4f6be3008d57eaec07bfab33f1ccafd77289c, fedramp-poam, cloud-service-provider-remediation, customer-responsibility-matrix, fedramp-continuous-monitoring, authorization-boundary-deficiencies"
+          "value": "source-file:inputs/poam_sample.xlsx, sheet-name:Sheet1, template-version:Unknown_v3.0_compatible, extraction-date:2025-09-14T04:02:47.952485Z, file-hash:9ba5177a35b7b2946ecada5169b4f6be3008d57eaec07bfab33f1ccafd77289c, fedramp, fedramp-poam, cloud service provider, cloud-service-provider-remediation, customer responsibility matrix, customer-responsibility-matrix, authorization boundary, authorization-boundary-deficiencies, fips 199, fedramp-continuous-monitoring"
         }
       ]
     },
     "system-id": {
       "identifier-type": "https://ietf.org/rfc/rfc4122",
-      "id": "eacc5c3f-c978-40fb-bd6e-d036400bac5c"
+      "id": "7cf1250c-d9e8-49ad-86aa-faca8425fc23"
     },
     "local-definitions": {
       "components": [
         {
-          "uuid": "82bd08d8-7449-4e40-86b8-a0cc1896cb59",
+          "uuid": "d7a85b1b-9c19-4021-8ca9-66b5eabd76ac",
           "type": "software",
           "title": "admin-portal",
           "description": "Component referenced in POA&M: admin-portal",
@@ -30,7 +30,7 @@
           }
         },
         {
-          "uuid": "26fa3eb3-1337-43f3-8322-0d429a525dbc",
+          "uuid": "7887c734-8a63-4541-b27c-b4edd517f967",
           "type": "software",
           "title": "all-production-systems",
           "description": "Component referenced in POA&M: all-production-systems",
@@ -39,7 +39,7 @@
           }
         },
         {
-          "uuid": "8cdb9af5-d0fc-434f-8cda-fd1be5a691ce",
+          "uuid": "9d250256-1ae1-4599-9c43-ef1405833773",
           "type": "software",
           "title": "central-logging-system",
           "description": "Component referenced in POA&M: central-logging-system",
@@ -48,7 +48,7 @@
           }
         },
         {
-          "uuid": "00735f2d-41e3-49a6-8b58-df502cc95c03",
+          "uuid": "03b838f3-1522-403d-83b2-20b0855dd157",
           "type": "software",
           "title": "incident-response-team",
           "description": "Component referenced in POA&M: incident-response-team",
@@ -57,7 +57,7 @@
           }
         },
         {
-          "uuid": "9f7bef08-0018-4e79-8275-1371428e1550",
+          "uuid": "e9ed703c-16d1-44de-9f46-197e4eb61fcc",
           "type": "software",
           "title": "production-database",
           "description": "Component referenced in POA&M: production-database",
@@ -69,7 +69,7 @@
     },
     "poam-items": [
       {
-        "uuid": "322cd334-c7cf-41c4-9a0c-aa9746bf111d",
+        "uuid": "a54d3634-d038-4747-86c9-ca54410d67ff",
         "title": "Multi-factor authentication not enforced for all admin accounts",
         "description": "Configure MFA enforcement in identity provider and update admin procedures",
         "props": [
@@ -80,12 +80,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "889b68b4-6c13-4dd0-919a-010bed6c34cb"
+            "finding-uuid": "41663b1f-f711-4eb5-837f-8655fe8c3dc4"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "27ae08ad-f495-4fdf-bebd-218326b2a5a9"
+            "risk-uuid": "ecb29ed0-7d7c-4a52-b05b-da2ce0c3f80d"
           }
         ],
         "origins": [
@@ -93,7 +93,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "4677d2c2-d606-41d5-9a74-b3b9255ea680",
+                "actor-uuid": "b4f57950-6ab2-4c4b-9645-a257d1da2116",
                 "props": [
                   {
                     "name": "marking",
@@ -106,7 +106,7 @@
         ]
       },
       {
-        "uuid": "ce32653b-a782-4ef0-8ad9-b2b39edf5c11",
+        "uuid": "25709989-3bab-43ef-92cd-0c608d1cd43b",
         "title": "Audit log retention period insufficient",
         "description": "Increase log retention period from 90 days to 1 year",
         "props": [
@@ -117,12 +117,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "b3d7f6a6-4c24-470e-bc25-50a12c0934eb"
+            "finding-uuid": "0284f716-d430-4898-a226-1c88b437c44b"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "9bb0d79f-25f2-4b7a-bb68-9582704953fd"
+            "risk-uuid": "0d197d32-fa5e-40ee-9049-30f34ac251a1"
           }
         ],
         "origins": [
@@ -130,7 +130,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "bff8f888-bb68-4cb6-86de-81cd55649aa3",
+                "actor-uuid": "a36f2558-3427-4371-844b-0084ca12385c",
                 "props": [
                   {
                     "name": "marking",
@@ -143,7 +143,7 @@
         ]
       },
       {
-        "uuid": "8fddc779-58f6-4263-87f1-a2effe6fa8df",
+        "uuid": "95a5334f-d4f6-4aab-9248-bf38fd4fd7ca",
         "title": "Vulnerability scanning frequency needs improvement",
         "description": "Configure automated weekly vulnerability scans",
         "props": [
@@ -154,12 +154,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "0d495ccb-87f6-4c18-be2f-c5796bb41f6c"
+            "finding-uuid": "66b1fb24-ceb0-461c-9682-68a1845793f6"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "08961e56-6148-498b-93e4-e59f68937af4"
+            "risk-uuid": "f907dad4-5562-4b48-9e44-ca691873cf3f"
           }
         ],
         "origins": [
@@ -167,7 +167,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "ff944e08-d244-4f46-b78c-b67f4b946065",
+                "actor-uuid": "ba2c7087-3599-445c-bdc3-fd95a486f53d",
                 "props": [
                   {
                     "name": "marking",
@@ -180,7 +180,7 @@
         ]
       },
       {
-        "uuid": "b34b1112-cb4a-4223-8c04-fb0f2348c771",
+        "uuid": "4d59648f-ca8b-4916-9255-b57acafe09c9",
         "title": "Incident response procedures need annual review",
         "description": "Annual review and update of incident response procedures",
         "props": [
@@ -191,12 +191,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "1b9cc125-262e-4fe3-9967-7b385dd0129e"
+            "finding-uuid": "094e57b0-6d78-44f7-99c4-b5113df6f599"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "5b4bc405-5518-4de3-aaeb-03d1747d4c76"
+            "risk-uuid": "b8b3d090-5364-4952-b5ce-274ad77c5814"
           }
         ],
         "origins": [
@@ -204,7 +204,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "40c8ad25-406d-4283-aa07-91a921a1fe30",
+                "actor-uuid": "2391242f-3152-4c96-b51e-3e29bc30cc2d",
                 "props": [
                   {
                     "name": "marking",
@@ -217,7 +217,7 @@
         ]
       },
       {
-        "uuid": "13e34ab5-023d-4646-b1b2-aa107e1df4da",
+        "uuid": "3398e305-bd0a-4cf1-baa3-7c53732acd9e",
         "title": "Database encryption keys require rotation",
         "description": "Implement automated key rotation for database encryption",
         "props": [
@@ -228,12 +228,12 @@
         ],
         "related-findings": [
           {
-            "finding-uuid": "ac253a98-fe52-4c59-9390-c30476010aa0"
+            "finding-uuid": "f1e13799-6953-40c2-9b2b-2106170f3523"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "2ed3f193-5d50-40a8-8a2d-901aae99f34e"
+            "risk-uuid": "dcf8f119-7ee0-495c-9aff-98879f0c4b4d"
           }
         ],
         "origins": [
@@ -241,7 +241,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "f489c282-c978-4277-8d3b-d27a79b0a402",
+                "actor-uuid": "2212ae0a-04e4-468b-bb65-fd2e708b6282",
                 "props": [
                   {
                     "name": "marking",
@@ -257,7 +257,7 @@
     "back-matter": {
       "resources": [
         {
-          "uuid": "af3a8833-3bfe-4ed5-bb56-bf107660fbc2",
+          "uuid": "9695e291-c7f9-4f79-a32d-d1783a98eb45",
           "title": "POA&M Source: poam_sample.xlsx",
           "rlinks": [
             {

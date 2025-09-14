@@ -413,24 +413,26 @@ class ComplianceChecker:
     
     def _check_fedramp_content(self, artifacts: List[Dict[str, Any]]) -> int:
         """Check for FedRAMP-specific content and return score 0-20"""
-        score = 0
-        
-        # Look for FedRAMP-specific elements
+        # Look for FedRAMP-specific elements (4 points each, max 20)
         fedramp_indicators = [
             "fedramp",
             "cloud service provider",
-            "authorization boundary",
+            "authorization boundary", 
             "fips 199",
             "customer responsibility matrix"
         ]
+        
+        # Track which indicators have been found to avoid double counting
+        found_indicators = set()
         
         for artifact in artifacts:
             content_str = json.dumps(artifact["content"]).lower()
             for indicator in fedramp_indicators:
                 if indicator in content_str:
-                    score += 4
-                    break
+                    found_indicators.add(indicator)
         
+        # Award 4 points for each unique indicator found
+        score = len(found_indicators) * 4
         return min(score, 20)  # Cap at 20 points
     
     def _extract_implemented_controls(self, ssp_content: Dict[str, Any]) -> List[str]:
