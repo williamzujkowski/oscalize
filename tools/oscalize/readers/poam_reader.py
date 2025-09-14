@@ -262,7 +262,7 @@ class POAMReader(BaseReader):
                 return value.strftime('%Y-%m-%d')
             elif isinstance(value, str):
                 # Try to parse string dates
-                date_obj = pd.to_datetime(value, infer_datetime_format=True)
+                date_obj = pd.to_datetime(value)
                 return date_obj.strftime('%Y-%m-%d')
             else:
                 # Try converting to datetime

@@ -1,0 +1,637 @@
+{
+  "system-security-plan": {
+    "uuid": "6595102f-ee38-43fb-ab31-52252b085df7",
+    "metadata": {
+      "title": "System Security Plan",
+      "published": "2025-09-14T02:52:18.173388Z",
+      "last-modified": "2025-09-14T02:52:18.173388Z",
+      "version": "1.0",
+      "oscal-version": "1.1.3",
+      "props": [
+        {
+          "name": "keywords",
+          "value": "source-file:tests/corpus/complete_integration_test/inputs/sample_ssp.md, source-type:md, extraction-date:2025-09-14T02:52:18.122569Z, file-hash:9f313001bf76d3730ca86b5eb6e4f7140960d004d62070a3050b443caf24878a, pandoc-version:pandoc 3.6.3"
+        }
+      ],
+      "roles": [
+        {
+          "id": "system-administrator",
+          "title": "System Administrator",
+          "description": "Responsible for system administration and maintenance"
+        },
+        {
+          "id": "system-owner",
+          "title": "System Owner",
+          "description": "Responsible for system ownership and governance"
+        },
+        {
+          "id": "authorizing-official",
+          "title": "Authorizing Official",
+          "description": "Responsible for system authorization"
+        },
+        {
+          "id": "isso",
+          "title": "Information System Security Officer",
+          "description": "Responsible for system security"
+        },
+        {
+          "id": "system-user",
+          "title": "System User",
+          "description": "Standard user of the system"
+        }
+      ]
+    },
+    "import-profile": {
+      "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json"
+    },
+    "system-characteristics": {
+      "system-ids": [
+        {
+          "identifier-type": "https://ietf.org/rfc/rfc4122",
+          "id": "ECS-001FIPS-199 Level: Moderate"
+        }
+      ],
+      "system-name": "Unknown System",
+      "description": "",
+      "status": {
+        "state": "operational"
+      },
+      "system-information": {
+        "information-types": [
+          {
+            "uuid": "2774f61c-8d2f-45bb-b383-6d998129203e",
+            "title": "General Business Information",
+            "description": "General business information processed by the system",
+            "categorizations": [
+              {
+                "system": "https://doi.org/10.6028/NIST.SP.800-60v1r1",
+                "information-type-ids": [
+                  "C.2.8.12"
+                ]
+              }
+            ],
+            "confidentiality-impact": {
+              "base": "fips-199-moderate"
+            },
+            "integrity-impact": {
+              "base": "fips-199-moderate"
+            },
+            "availability-impact": {
+              "base": "fips-199-low"
+            }
+          }
+        ]
+      },
+      "authorization-boundary": {
+        "description": "Authorization boundary description not found in source document."
+      },
+      "network-architecture": {
+        "description": "Network architecture description not found in source document."
+      },
+      "data-flow": {
+        "description": "Data flow description not found in source document."
+      }
+    },
+    "system-implementation": {
+      "users": [
+        {
+          "uuid": "6f105c64-4afc-4ab2-a0c7-c1515d1d82ee",
+          "title": "System Administrator",
+          "description": "Administrative access to system components",
+          "role-ids": [
+            "system-administrator"
+          ],
+          "authorized-privileges": [
+            {
+              "title": "admin",
+              "functions-performed": [
+                "admin"
+              ]
+            },
+            {
+              "title": "configure",
+              "functions-performed": [
+                "configure"
+              ]
+            },
+            {
+              "title": "monitor",
+              "functions-performed": [
+                "monitor"
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "7218146c-ea50-49c7-9e2b-78efb5c1c9d3",
+          "title": "System User",
+          "description": "Standard user access to system",
+          "role-ids": [
+            "system-user"
+          ],
+          "authorized-privileges": [
+            {
+              "title": "read",
+              "functions-performed": [
+                "read"
+              ]
+            },
+            {
+              "title": "write",
+              "functions-performed": [
+                "write"
+              ]
+            }
+          ]
+        }
+      ],
+      "components": [
+        {
+          "uuid": "7307808e-744e-4f7d-99f3-33546b7eee4e",
+          "type": "software",
+          "title": "Software Components",
+          "description": "Components of type: software",
+          "status": {
+            "state": "operational"
+          },
+          "responsible-roles": [
+            {
+              "role-id": "system-administrator",
+              "props": [
+                {
+                  "name": "marking",
+                  "value": "system"
+                }
+              ]
+            }
+          ],
+          "props": [
+            {
+              "name": "asset-type",
+              "value": "software"
+            }
+          ]
+        },
+        {
+          "uuid": "3cc0c815-ae1c-4b9d-9631-468976bc1d95",
+          "type": "hardware",
+          "title": "Hardware Components",
+          "description": "Components of type: hardware",
+          "status": {
+            "state": "operational"
+          },
+          "responsible-roles": [
+            {
+              "role-id": "system-administrator",
+              "props": [
+                {
+                  "name": "marking",
+                  "value": "system"
+                }
+              ]
+            }
+          ],
+          "props": [
+            {
+              "name": "asset-type",
+              "value": "hardware"
+            }
+          ]
+        },
+        {
+          "uuid": "711edd1c-8f8b-4c49-920a-05c792f22d6e",
+          "type": "service",
+          "title": "Service Components",
+          "description": "Components of type: service",
+          "status": {
+            "state": "operational"
+          },
+          "responsible-roles": [
+            {
+              "role-id": "system-administrator",
+              "props": [
+                {
+                  "name": "marking",
+                  "value": "system"
+                }
+              ]
+            }
+          ],
+          "props": [
+            {
+              "name": "asset-type",
+              "value": "service"
+            }
+          ]
+        }
+      ],
+      "inventory-items": [
+        {
+          "uuid": "7c5e4b08-c8ae-47b2-8da7-c67f1999a6bd",
+          "description": "React-based web application frontend",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "WEB-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "b805b1d1-95e6-443a-8f64-f8c827a09d03",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "WEB-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "ed4934d2-b098-4005-83f1-a43a621212af",
+          "description": "RESTful API gateway service",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "API-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "7932c40d-12f1-4c33-b1cc-b0b5789815cc",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "API-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "7181b97e-0945-4f64-a583-8f15b8760db4",
+          "description": "PostgreSQL primary database",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "DB-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "6f00da73-44a4-430d-9704-bd6c93407749",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "DB-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "fb4b28d8-c90e-4218-af86-d4b8548c04d0",
+          "description": "PostgreSQL read replica",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "DB-002"
+            },
+            {
+              "name": "asset-type",
+              "value": "software"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "533a59eb-e76b-4413-803a-9b6fdac17bb9",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "DB-002"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "12e021a7-55a5-49d0-b2b3-0c13f9035291",
+          "description": "Application load balancer",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "LB-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "hardware"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "48711d1e-afa9-43ac-9c7f-0e1c42d21c8d",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "LB-001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "9042c7bb-558b-46cc-8310-6c9553285d1b",
+          "description": "Multi-factor authentication service",
+          "props": [
+            {
+              "name": "asset-id",
+              "value": "AUTH-001"
+            },
+            {
+              "name": "asset-type",
+              "value": "service"
+            }
+          ],
+          "implemented-components": [
+            {
+              "component-uuid": "13787859-fc2f-46ad-bdde-c48eba295c68",
+              "props": [
+                {
+                  "name": "asset-id",
+                  "value": "AUTH-001"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "control-implementation": {
+      "description": "Control implementation descriptions extracted from source documents.",
+      "implemented-requirements": [
+        {
+          "uuid": "a8050a9f-0cc6-45cf-bb57-8b01efb8575b",
+          "control-id": "AC-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AC-1_stmt",
+              "uuid": "7fdfbb64-41a7-46bb-900d-daf2a5360a0a",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:The organization has implemented comprehensive access control policies and procedures. All user access is managed through centrally managed identity providers with multi-factor authentication required for all administrative access.\n\nResponsible Role: Security Team, System Administrator\n\nAssessment Procedures:- Review access control policies annually- Test authentication mechanisms quarterly- Audit user access logs monthly\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "5070b861-5943-4ee4-b2cc-650838e6b4b5",
+              "uuid": "3bf3e165-208c-4780-b327-9bfab8500c58",
+              "description": "Implementation of AC-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "830c031e-22e2-418b-9f41-3224322214be",
+          "control-id": "AC-2",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AC-2_stmt",
+              "uuid": "9192e679-1d63-409a-a108-987fdc20d1a7",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:User accounts are managed through automated provisioning systems. Account creation, modification, and deletion are logged and monitored. Privileged accounts require additional approval workflows.\n\nResponsible Role: Identity Management Team\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "8c28d7fe-344b-44cb-923d-796cb395a095",
+              "uuid": "5298651b-5584-4437-aa33-52e44ddfb5b9",
+              "description": "Implementation of AC-2 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "9f5f12ba-ecf3-4836-a76a-a9b683110a65",
+          "control-id": "AU-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AU-1_stmt",
+              "uuid": "f2afaa48-0ecd-4850-ad07-bdc120648903",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Comprehensive audit logging is implemented across all system components. Logs are centrally collected, monitored, and retained for compliance requirements.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "3c893c92-0c34-4b03-8797-c5c4b5974524",
+              "uuid": "d34661db-2c1c-4498-b9eb-da3503668045",
+              "description": "Implementation of AU-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "370dac41-196c-4298-b2ad-9893ba45f42f",
+          "control-id": "IA-2",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "IA-2_stmt",
+              "uuid": "047252bc-96f0-4689-9466-d938ca2c8fcb",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:All users must authenticate using multi-factor authentication (MFA). Authentication integrates with organizational identity providers supporting SAML 2.0 and OpenID Connect.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "de54f3a7-3421-4adb-a7b3-f64c57f299e6",
+              "uuid": "d684eb20-44f9-4543-930e-f1dae8c9a987",
+              "description": "Implementation of IA-2 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "cb769812-6598-4355-b088-4e6ef0535abc",
+          "control-id": "AU-11",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AU-11_stmt",
+              "uuid": "96664378-5a8e-4509-9e16-0f2dd169f898",
+              "remarks": "Control AU-11 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "b16ec578-bdd4-4674-99de-6dde634c758e",
+              "uuid": "eb63ac17-2d9c-44f1-adde-b4a29eb580d5",
+              "description": "Implementation of AU-11 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "17674ff2-25ec-42a2-879d-cc463b4ef92e",
+          "control-id": "RA-5",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "RA-5_stmt",
+              "uuid": "d34981d9-1e72-4c12-b25f-ec83793f1a6b",
+              "remarks": "Control RA-5 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "37185dd2-fcf6-4e14-a81d-f0a9b32c5726",
+              "uuid": "647dc8a9-6bef-4ec7-a567-1de8959f5e93",
+              "description": "Implementation of RA-5 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "f8857a0a-b87b-4e10-84e8-2696566a02c0",
+          "control-id": "IR-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "IR-1_stmt",
+              "uuid": "08c30ccc-82b9-4cd7-b783-4e7dcf8a6e7e",
+              "remarks": "Control IR-1 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "6293a5cd-8652-4a77-ae6e-075710c7b1a2",
+              "uuid": "26e3b1c1-1b45-446d-badc-21f017f0b912",
+              "description": "Implementation of IR-1 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "e849aa4c-005b-4a83-87a9-f002f87a4b82",
+          "control-id": "SC-12",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "SC-12_stmt",
+              "uuid": "905b4010-a2fa-483f-9eb2-0b9080cfd0ff",
+              "remarks": "Control SC-12 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "54fbc0ad-86d3-489b-a1a5-e99a605cfd41",
+              "uuid": "329519a9-b2e0-4877-a8d7-b70b95fbadb2",
+              "description": "Implementation of SC-12 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "0c261865-37b8-4439-815c-e581aec1bb94",
+          "title": "Source Inventory: inventory_sample.xlsx",
+          "rlinks": [
+            {
+              "href": "tests/corpus/complete_integration_test/inputs/inventory_sample.xlsx"
+            }
+          ],
+          "description": "Original inventory file used for OSCAL generation"
+        },
+        {
+          "uuid": "f1283643-5432-4834-b901-8e29ab8a7542",
+          "title": "Source Document: sample_ssp.md",
+          "rlinks": [
+            {
+              "href": "tests/corpus/complete_integration_test/inputs/sample_ssp.md"
+            }
+          ],
+          "description": "Original document file used for OSCAL generation"
+        },
+        {
+          "uuid": "1a9004d7-e80a-4d04-9f6b-08d1557b4691",
+          "title": "Source Poam: poam_sample.xlsx",
+          "rlinks": [
+            {
+              "href": "tests/corpus/complete_integration_test/inputs/poam_sample.xlsx"
+            }
+          ],
+          "description": "Original poam file used for OSCAL generation"
+        }
+      ]
+    }
+  }
+}

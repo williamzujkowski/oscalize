@@ -22,9 +22,9 @@ from rich.progress import Progress, SpinnerColumn, TextColumn
 # Import our modules - handle both direct execution and module import
 try:
     from .readers import DocumentReader, POAMReader, InventoryReader
-    from .mappers import SSPMapper, POAMMapper, InventoryMapper, AssessmentMapper
+    from .mappers import SSPMapper, POAMMapper, InventoryMapper
     from .cir import CIRValidator, CIRProcessor
-    from .validation import OSCALValidator, ValidationReporter
+    from .validation import ValidationReporter, ValidationPipeline
     from .packaging import BundleCreator, ManifestGenerator
 except ImportError:
     # If relative imports fail, try absolute imports (when run directly)
@@ -33,9 +33,9 @@ except ImportError:
     sys.path.insert(0, str(Path(__file__).parent.parent))
     
     from oscalize.readers import DocumentReader, POAMReader, InventoryReader
-    from oscalize.mappers import SSPMapper, POAMMapper, InventoryMapper, AssessmentMapper
+    from oscalize.mappers import SSPMapper, POAMMapper, InventoryMapper
     from oscalize.cir import CIRValidator, CIRProcessor
-    from oscalize.validation import OSCALValidator, ValidationReporter
+    from oscalize.validation import ValidationReporter, ValidationPipeline
     from oscalize.packaging import BundleCreator, ManifestGenerator
 
 # Set up console and logging
@@ -160,6 +160,53 @@ def convert(ctx, inputs: List[Path], output: Path, mapping_dir: Path, schema_dir
 
 
 @cli.command()
+@click.argument('oscal_dir', type=click.Path(exists=True, path_type=Path))
+@click.option('--use-docker', is_flag=True, help='Use Docker container for validation')
+@click.option('--oscal-cli-path', default='oscal-cli', help='Path to oscal-cli executable')
+@click.option('--validation-dir', type=click.Path(path_type=Path), 
+              help='Directory for validation outputs (default: <oscal_dir>/validation)')
+@click.pass_context
+def validate_enhanced(ctx, oscal_dir: Path, use_docker: bool, oscal_cli_path: str, 
+                     validation_dir: Optional[Path]):
+    """Run enhanced OSCAL validation pipeline with comprehensive error reporting"""
+    try:
+        from .validation import ValidationPipeline
+    except ImportError:
+        # If relative imports fail, try absolute imports (when run directly)
+        from oscalize.validation import ValidationPipeline
+    
+    # Setup validation directory
+    if validation_dir is None:
+        validation_dir = oscal_dir / "validation"
+    
+    try:
+        # Initialize and run pipeline
+        pipeline = ValidationPipeline(
+            oscal_dir=oscal_dir,
+            validation_dir=validation_dir,
+            console=console
+        )
+        
+        results = pipeline.run_complete_validation(
+            use_docker=use_docker,
+            oscal_cli_path=oscal_cli_path
+        )
+        
+        # Exit with error code if validation failed
+        if results.get("compliance_analysis", {}).get("status") not in ["COMPLIANT", "NO_FILES"]:
+            logger.error("OSCAL validation failed - see detailed reports for resolution steps")
+            sys.exit(1)
+        
+        logger.info("Enhanced OSCAL validation completed successfully")
+        
+    except Exception as e:
+        logger.error(f"Enhanced validation pipeline failed: {e}")
+        if ctx.obj['verbose']:
+            logger.exception(e)
+        sys.exit(1)
+
+
+@cli.command()
 @click.argument('validation_dir', type=click.Path(exists=True, path_type=Path))
 @click.option('--output', '-o', type=click.Path(path_type=Path),
               help='Output file for validation summary')
@@ -218,8 +265,12 @@ def manifest(ctx, oscal_dir: Path, output: Optional[Path]):
 @click.argument('corpus_dir', type=click.Path(exists=True, path_type=Path))
 @click.pass_context
 def test_corpus(ctx, corpus_dir: Path):
-    """Test conversion against corpus of known inputs/outputs"""
-    from .testing import CorpusTester
+    """Test conversion against corpus of known inputs/outputs (legacy)"""
+    try:
+        from .testing import CorpusTester
+    except ImportError:
+        # If relative imports fail, try absolute imports (when run directly)
+        from oscalize.testing import CorpusTester
     
     tester = CorpusTester(corpus_dir)
     results = tester.run_tests()
@@ -232,18 +283,245 @@ def test_corpus(ctx, corpus_dir: Path):
 
 
 @cli.command()
+@click.argument('corpus_dir', type=click.Path(path_type=Path))
+@click.option('--include-validation', is_flag=True, 
+              help='Include OSCAL validation in corpus testing')
+@click.option('--working-dir', type=click.Path(path_type=Path),
+              help='Working directory for test execution')
+@click.pass_context
+def test_corpus_enhanced(ctx, corpus_dir: Path, include_validation: bool, 
+                        working_dir: Optional[Path]):
+    """Run enhanced corpus testing with real conversion and validation"""
+    try:
+        from .testing import EnhancedCorpusTester
+    except ImportError:
+        # If relative imports fail, try absolute imports (when run directly)
+        from oscalize.testing import EnhancedCorpusTester
+    
+    try:
+        tester = EnhancedCorpusTester(
+            corpus_dir=corpus_dir,
+            working_dir=working_dir,
+            console=console
+        )
+        
+        results = tester.run_comprehensive_tests(
+            include_validation=include_validation,
+            clean_working_dir=True
+        )
+        
+        # Exit with appropriate code
+        if results.get("executive_summary", {}).get("status") == "PASS":
+            logger.info("Enhanced corpus testing completed successfully")
+        else:
+            failed = results.get("executive_summary", {}).get("failed", 0)
+            errors = results.get("executive_summary", {}).get("errors", 0)
+            logger.error(f"Enhanced corpus testing failed: {failed} failed, {errors} errors")
+            sys.exit(1)
+    
+    except Exception as e:
+        logger.error(f"Enhanced corpus testing failed: {e}")
+        if ctx.obj['verbose']:
+            logger.exception(e)
+        sys.exit(1)
+
+
+@cli.command()
+@click.argument('corpus_dir', type=click.Path(path_type=Path))
+@click.argument('samples_dir', type=click.Path(exists=True, path_type=Path))
+@click.option('--test-descriptions', type=click.Path(exists=True, path_type=Path),
+              help='JSON file with test descriptions')
+@click.pass_context
+def generate_corpus(ctx, corpus_dir: Path, samples_dir: Path, 
+                   test_descriptions: Optional[Path]):
+    """Generate golden corpus from sample input files"""
+    try:
+        from .testing import CorpusGenerator
+    except ImportError:
+        # If relative imports fail, try absolute imports (when run directly)
+        from oscalize.testing import CorpusGenerator
+    
+    try:
+        generator = CorpusGenerator(
+            corpus_dir=corpus_dir,
+            console=console
+        )
+        
+        descriptions = None
+        if test_descriptions:
+            with open(test_descriptions, 'r') as f:
+                descriptions = json.load(f)
+        
+        results = generator.generate_from_samples(
+            samples_dir=samples_dir,
+            test_descriptions=descriptions
+        )
+        
+        successful = results.get("summary", {}).get("successful", 0)
+        failed = results.get("summary", {}).get("failed", 0)
+        
+        logger.info(f"Generated {successful} corpus test cases")
+        if failed > 0:
+            logger.warning(f"{failed} test cases failed to generate")
+        
+    except Exception as e:
+        logger.error(f"Corpus generation failed: {e}")
+        if ctx.obj['verbose']:
+            logger.exception(e)
+        sys.exit(1)
+
+
+@cli.command()
+@click.argument('corpus_dir', type=click.Path(path_type=Path))
+@click.option('--inputs-dir', type=click.Path(exists=True, path_type=Path),
+              default=Path('inputs'), help='Directory containing input files')
+@click.option('--test-name', help='Name for the test case')
+@click.option('--description', help='Description of the test case')
+@click.pass_context
+def create_golden_test(ctx, corpus_dir: Path, inputs_dir: Path, 
+                      test_name: Optional[str], description: Optional[str]):
+    """Create golden corpus test case from current inputs"""
+    try:
+        from .testing import CorpusGenerator
+    except ImportError:
+        # If relative imports fail, try absolute imports (when run directly)
+        from oscalize.testing import CorpusGenerator
+    
+    try:
+        generator = CorpusGenerator(
+            corpus_dir=corpus_dir,
+            console=console
+        )
+        
+        test_dir = generator.create_test_case_from_current_inputs(
+            inputs_dir=inputs_dir,
+            test_name=test_name,
+            description=description or "Generated from current inputs"
+        )
+        
+        logger.info(f"Golden test case created: {test_dir}")
+        
+    except Exception as e:
+        logger.error(f"Failed to create golden test case: {e}")
+        if ctx.obj['verbose']:
+            logger.exception(e)
+        sys.exit(1)
+
+
+@cli.command()
+@click.argument('corpus_dir', type=click.Path(path_type=Path))
+@click.pass_context
+def validate_corpus_integrity(ctx, corpus_dir: Path):
+    """Validate integrity and completeness of corpus test cases"""
+    try:
+        from .testing import EnhancedCorpusTester
+    except ImportError:
+        # If relative imports fail, try absolute imports (when run directly)
+        from oscalize.testing import EnhancedCorpusTester
+    
+    try:
+        tester = EnhancedCorpusTester(
+            corpus_dir=corpus_dir,
+            console=console
+        )
+        
+        integrity_report = tester.validate_corpus_integrity()
+        
+        console.print_json(data=integrity_report)
+        
+        if integrity_report.get("invalid_test_cases", 0) > 0:
+            logger.error("Corpus integrity issues found")
+            sys.exit(1)
+        else:
+            logger.info("Corpus integrity validation passed")
+    
+    except Exception as e:
+        logger.error(f"Corpus integrity validation failed: {e}")
+        if ctx.obj['verbose']:
+            logger.exception(e)
+        sys.exit(1)
+
+
+@cli.command()
+@click.argument('manifest_file', type=click.Path(exists=True, path_type=Path))
+@click.pass_context
+def verify_manifest(ctx, manifest_file: Path):
+    """Verify manifest integrity and file hashes"""
+    generator = ManifestGenerator()
+    verification_results = generator.verify_manifest(manifest_file)
+    
+    if verification_results.get("valid", False):
+        logger.info("Manifest verification passed")
+        console.print_json(data=verification_results)
+    else:
+        logger.error("Manifest verification failed")
+        console.print_json(data=verification_results)
+        sys.exit(1)
+
+
+@cli.command()
+@click.argument('bundle_file', type=click.Path(exists=True, path_type=Path))
+@click.pass_context
+def verify_bundle(ctx, bundle_file: Path):
+    """Verify bundle integrity without full extraction"""
+    creator = BundleCreator()
+    verification_results = creator.verify_bundle_integrity(bundle_file)
+    
+    if verification_results.get("valid", False):
+        logger.info("Bundle integrity verification passed")
+        console.print_json(data=verification_results)
+    else:
+        logger.error("Bundle integrity verification failed")
+        console.print_json(data=verification_results)
+        sys.exit(1)
+
+
+@cli.command()
+@click.argument('bundle_file', type=click.Path(exists=True, path_type=Path))
+@click.pass_context
+def list_bundle(ctx, bundle_file: Path):
+    """List contents of bundle without extracting"""
+    creator = BundleCreator()
+    contents = creator.list_bundle_contents(bundle_file)
+    
+    console.print_json(data={"bundle_contents": contents})
+
+
+@cli.command()
+@click.argument('bundle_file', type=click.Path(exists=True, path_type=Path))
+@click.argument('extract_dir', type=click.Path(path_type=Path))
+@click.pass_context
+def extract_bundle(ctx, bundle_file: Path, extract_dir: Path):
+    """Extract bundle and verify integrity"""
+    creator = BundleCreator()
+    extraction_results = creator.extract_bundle(bundle_file, extract_dir)
+    
+    logger.info(f"Bundle extracted to: {extraction_results['extracted_to']}")
+    console.print_json(data=extraction_results)
+    
+    # Exit with error if verification failed
+    if extraction_results.get("metadata", {}).get("verification", {}).get("valid") is False:
+        logger.error("Bundle verification failed after extraction")
+        sys.exit(1)
+
+
+@cli.command()
 @click.argument('oscal_dir', type=click.Path(exists=True, path_type=Path))
 @click.pass_context
 def compliance_check(ctx, oscal_dir: Path):
     """Check compliance with M-24-15 and FedRAMP requirements"""
-    from .compliance import ComplianceChecker
+    try:
+        from .compliance import ComplianceChecker
+    except ImportError:
+        # If relative imports fail, try absolute imports (when run directly)
+        from oscalize.compliance import ComplianceChecker
     
     checker = ComplianceChecker()
     results = checker.check_directory(oscal_dir)
     
     console.print_json(data=results)
     
-    if not results['compliant']:
+    if not results.get('compliance_check', {}).get('compliant', False):
         logger.error("Compliance check failed")
         sys.exit(1)
 

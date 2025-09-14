@@ -45,8 +45,11 @@ COPY Taskfile.yml /app/
 # Create directories for inputs and outputs
 RUN mkdir -p inputs dist/oscal/validation tests/corpus refs
 
-# Set up entry point
-ENTRYPOINT ["bash", "-lc"]
+# Set up PATH for non-login shells
+ENV PATH="/opt/oscal-cli/bin:/usr/local/bin:${PATH}"
+
+# Set up entry point 
+ENTRYPOINT ["bash", "-c"]
 CMD ["task --list"]
 
 # Labels for metadata

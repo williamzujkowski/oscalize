@@ -1,32 +1,43 @@
 {
   "system-security-plan": {
-    "uuid": "af6190cb-2e50-482c-981d-69c08bcc15f4",
+    "uuid": "b984ac08-9c4b-4e6a-888f-038c20128c39",
     "metadata": {
-      "title": "System Security Plan",
-      "published": "2025-09-14T02:02:04.033438Z",
-      "last-modified": "2025-09-14T02:02:04.033438Z",
+      "title": "System Security Plan - FedRAMP Cloud Service Provider Authorization",
+      "published": "2025-09-14T03:02:36.855802Z",
+      "last-modified": "2025-09-14T03:02:36.855802Z",
       "version": "1.0",
       "oscal-version": "1.1.3",
       "props": [
         {
-          "name": "source-file",
-          "value": "inputs/sample_ssp.md"
+          "name": "keywords",
+          "value": "source-file:inputs/sample_ssp.md, source-type:md, extraction-date:2025-09-14T03:02:36.796194Z, file-hash:bc3354d73c865ec9f963b5d69fb0870a6b765db640a758e1a6b46a6ebeec5309, pandoc-version:pandoc 3.1.11.1, fedramp-authorization, cloud-service-provider, customer-responsibility-matrix, fedramp-baseline, authorization-boundary, fips-199-categorization"
+        }
+      ],
+      "roles": [
+        {
+          "id": "system-administrator",
+          "title": "System Administrator",
+          "description": "Responsible for system administration and maintenance"
         },
         {
-          "name": "source-type",
-          "value": "md"
+          "id": "system-owner",
+          "title": "System Owner",
+          "description": "Responsible for system ownership and governance"
         },
         {
-          "name": "extraction-date",
-          "value": "2025-09-14T02:02:03.956833Z"
+          "id": "authorizing-official",
+          "title": "Authorizing Official",
+          "description": "Responsible for system authorization"
         },
         {
-          "name": "file-hash",
-          "value": "9f313001bf76d3730ca86b5eb6e4f7140960d004d62070a3050b443caf24878a"
+          "id": "isso",
+          "title": "Information System Security Officer",
+          "description": "Responsible for system security"
         },
         {
-          "name": "pandoc-version",
-          "value": "pandoc 3.6.3"
+          "id": "system-user",
+          "title": "System User",
+          "description": "Standard user of the system"
         }
       ]
     },
@@ -48,7 +59,7 @@
       "system-information": {
         "information-types": [
           {
-            "uuid": "c52130c9-e046-47f3-a35b-f929c530bf37",
+            "uuid": "e034eef5-45aa-497d-b7b8-e9ca142f4d53",
             "title": "General Business Information",
             "description": "General business information processed by the system",
             "categorizations": [
@@ -60,19 +71,19 @@
               }
             ],
             "confidentiality-impact": {
-              "base": "moderate"
+              "base": "fips-199-moderate"
             },
             "integrity-impact": {
-              "base": "moderate"
+              "base": "fips-199-moderate"
             },
             "availability-impact": {
-              "base": "low"
+              "base": "fips-199-low"
             }
           }
         ]
       },
       "authorization-boundary": {
-        "description": "Authorization boundary description not found in source document."
+        "description": "This cloud service provider system operates within a clearly defined FedRAMP authorization boundary that encompasses all system components, data flows, and cloud service interfaces. The authorization boundary includes customer responsibility matrix elements and defines the scope of the FedRAMP authorization for this cloud service offering."
       },
       "network-architecture": {
         "description": "Network architecture description not found in source document."
@@ -84,7 +95,7 @@
     "system-implementation": {
       "users": [
         {
-          "uuid": "db5f50d6-fc6f-407c-b9e3-47f4afe4b25c",
+          "uuid": "ffde71fe-5a69-492b-a84f-22a799a5946f",
           "title": "System Administrator",
           "description": "Administrative access to system components",
           "role-ids": [
@@ -112,7 +123,7 @@
           ]
         },
         {
-          "uuid": "2aac28da-d945-467a-8079-0dc804b53301",
+          "uuid": "c05bca20-3a59-4d98-bbd9-18a266327d32",
           "title": "System User",
           "description": "Standard user access to system",
           "role-ids": [
@@ -136,7 +147,7 @@
       ],
       "components": [
         {
-          "uuid": "3d880015-8059-4806-a91d-be859914c418",
+          "uuid": "1b041d13-05d9-41f9-b896-3f75a1fbe8fb",
           "type": "software",
           "title": "Software Components",
           "description": "Components of type: software",
@@ -148,25 +159,21 @@
               "role-id": "system-administrator",
               "props": [
                 {
-                  "name": "component-type",
-                  "value": "software"
+                  "name": "marking",
+                  "value": "system"
                 }
               ]
             }
           ],
           "props": [
             {
-              "name": "asset-count",
-              "value": "4"
-            },
-            {
-              "name": "component-type",
+              "name": "asset-type",
               "value": "software"
             }
           ]
         },
         {
-          "uuid": "81d5d2dd-e0c6-4335-82a7-8255b70b2413",
+          "uuid": "7b5d4db7-f3be-4555-9a60-8323f6432440",
           "type": "hardware",
           "title": "Hardware Components",
           "description": "Components of type: hardware",
@@ -178,25 +185,21 @@
               "role-id": "system-administrator",
               "props": [
                 {
-                  "name": "component-type",
-                  "value": "hardware"
+                  "name": "marking",
+                  "value": "system"
                 }
               ]
             }
           ],
           "props": [
             {
-              "name": "asset-count",
-              "value": "1"
-            },
-            {
-              "name": "component-type",
+              "name": "asset-type",
               "value": "hardware"
             }
           ]
         },
         {
-          "uuid": "58e663b1-dac6-46d0-b841-b7fd7f19eda1",
+          "uuid": "e1985646-1179-426f-969b-55bbf980ebbf",
           "type": "service",
           "title": "Service Components",
           "description": "Components of type: service",
@@ -208,19 +211,15 @@
               "role-id": "system-administrator",
               "props": [
                 {
-                  "name": "component-type",
-                  "value": "service"
+                  "name": "marking",
+                  "value": "system"
                 }
               ]
             }
           ],
           "props": [
             {
-              "name": "asset-count",
-              "value": "1"
-            },
-            {
-              "name": "component-type",
+              "name": "asset-type",
               "value": "service"
             }
           ]
@@ -228,7 +227,7 @@
       ],
       "inventory-items": [
         {
-          "uuid": "803aedbd-5e48-4583-829c-094da80f8f6c",
+          "uuid": "80510edd-3fcc-47ed-819e-d41c77ba8ad1",
           "description": "React-based web application frontend",
           "props": [
             {
@@ -238,23 +237,11 @@
             {
               "name": "asset-type",
               "value": "software"
-            },
-            {
-              "name": "name",
-              "value": "Web Application Frontend"
-            },
-            {
-              "name": "environment",
-              "value": "Production"
-            },
-            {
-              "name": "criticality",
-              "value": "Moderate"
             }
           ],
           "implemented-components": [
             {
-              "component-uuid": "98bcb942-9294-4a5a-b29b-189ae4e71dc3",
+              "component-uuid": "19f0a70a-3dad-4ea4-befb-ff1765953204",
               "props": [
                 {
                   "name": "asset-id",
@@ -265,7 +252,7 @@
           ]
         },
         {
-          "uuid": "561d5a42-cdb9-45eb-ae33-3984f1624af2",
+          "uuid": "9751fa9f-66c0-4c42-8c41-82c0e10c1654",
           "description": "RESTful API gateway service",
           "props": [
             {
@@ -275,23 +262,11 @@
             {
               "name": "asset-type",
               "value": "software"
-            },
-            {
-              "name": "name",
-              "value": "API Gateway"
-            },
-            {
-              "name": "environment",
-              "value": "Production"
-            },
-            {
-              "name": "criticality",
-              "value": "High"
             }
           ],
           "implemented-components": [
             {
-              "component-uuid": "c1005902-f009-4715-a9fb-1f5d1f8aa828",
+              "component-uuid": "2467807d-95e2-4dc3-a532-f292f5ef0c19",
               "props": [
                 {
                   "name": "asset-id",
@@ -302,7 +277,7 @@
           ]
         },
         {
-          "uuid": "20bb042a-00bf-4c73-b8a7-8129189a1d31",
+          "uuid": "b5eee132-9ba2-461b-8683-fb3f9defe05c",
           "description": "PostgreSQL primary database",
           "props": [
             {
@@ -312,23 +287,11 @@
             {
               "name": "asset-type",
               "value": "software"
-            },
-            {
-              "name": "name",
-              "value": "Primary Database"
-            },
-            {
-              "name": "environment",
-              "value": "Production"
-            },
-            {
-              "name": "criticality",
-              "value": "High"
             }
           ],
           "implemented-components": [
             {
-              "component-uuid": "77436edb-9028-4085-a9b2-63f8215f254b",
+              "component-uuid": "e3962862-0d81-4ef2-9f60-f75c849fae0d",
               "props": [
                 {
                   "name": "asset-id",
@@ -339,7 +302,7 @@
           ]
         },
         {
-          "uuid": "02a08430-0245-46a0-9709-03a39bfab77a",
+          "uuid": "4d59e686-ee01-4e76-ac98-2ef48b008bae",
           "description": "PostgreSQL read replica",
           "props": [
             {
@@ -349,23 +312,11 @@
             {
               "name": "asset-type",
               "value": "software"
-            },
-            {
-              "name": "name",
-              "value": "Database Replica"
-            },
-            {
-              "name": "environment",
-              "value": "Production"
-            },
-            {
-              "name": "criticality",
-              "value": "High"
             }
           ],
           "implemented-components": [
             {
-              "component-uuid": "6a81d191-5327-43f8-8fdd-c1d3372645b8",
+              "component-uuid": "c9f7fd5d-9480-4fab-a7c8-05416783a523",
               "props": [
                 {
                   "name": "asset-id",
@@ -376,7 +327,7 @@
           ]
         },
         {
-          "uuid": "7a50db39-0bbc-4e17-b904-618d6b4b115c",
+          "uuid": "0bf56ae4-0c0a-4d21-bf44-63312b7c431d",
           "description": "Application load balancer",
           "props": [
             {
@@ -386,23 +337,11 @@
             {
               "name": "asset-type",
               "value": "hardware"
-            },
-            {
-              "name": "name",
-              "value": "Load Balancer"
-            },
-            {
-              "name": "environment",
-              "value": "Production"
-            },
-            {
-              "name": "criticality",
-              "value": "Moderate"
             }
           ],
           "implemented-components": [
             {
-              "component-uuid": "c6c8e5a1-19a1-4b33-9a48-505bd75e7d9d",
+              "component-uuid": "549382f5-57f3-4554-870a-74aa61594f50",
               "props": [
                 {
                   "name": "asset-id",
@@ -413,7 +352,7 @@
           ]
         },
         {
-          "uuid": "8435b3bb-30d1-4d1a-8772-4590c0bd9aeb",
+          "uuid": "11469241-7003-4370-a9e5-a12332177c6e",
           "description": "Multi-factor authentication service",
           "props": [
             {
@@ -423,23 +362,11 @@
             {
               "name": "asset-type",
               "value": "service"
-            },
-            {
-              "name": "name",
-              "value": "Authentication Service"
-            },
-            {
-              "name": "environment",
-              "value": "Production"
-            },
-            {
-              "name": "criticality",
-              "value": "Critical"
             }
           ],
           "implemented-components": [
             {
-              "component-uuid": "aa6c5163-c74a-4985-9d1c-6d5b9273d67a",
+              "component-uuid": "6e9fdd72-a2ea-4488-ae15-02fb0362f741",
               "props": [
                 {
                   "name": "asset-id",
@@ -455,154 +382,542 @@
       "description": "Control implementation descriptions extracted from source documents.",
       "implemented-requirements": [
         {
-          "uuid": "dbdcfc3f-4e1b-4b9f-a7e2-37d54d16a9ba",
+          "uuid": "088ffc0b-773f-4467-9cf6-fcb4b5fdc288",
           "control-id": "AC-1",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "implemented"
-            },
-            {
-              "name": "source-section",
-              "value": "AC-1 Access Control Policy and Procedures"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "AC-1_stmt",
-              "uuid": "2a660058-0a5d-49a2-9016-6642a30c8226",
+              "uuid": "993ecff4-ce93-40d4-946f-96284b2708a8",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:The organization has implemented comprehensive access control policies and procedures. All user access is managed through centrally managed identity providers with multi-factor authentication required for all administrative access.\n\nResponsible Role: Security Team, System Administrator\n\nAssessment Procedures:- Review access control policies annually- Test authentication mechanisms quarterly- Audit user access logs monthly\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ece822f0-06b9-433f-be6c-90bd99ea9d60",
+              "uuid": "bc694f0b-778b-456f-acf9-cd3cd9b272a6",
+              "description": "Implementation of AC-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
             }
           ]
         },
         {
-          "uuid": "f489168d-3f95-44ed-858a-f4de9d420b9a",
+          "uuid": "8da83f3d-d194-497a-9b2b-193519951fea",
           "control-id": "AC-2",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "implemented"
-            },
-            {
-              "name": "source-section",
-              "value": "AC-2 Account Management"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "AC-2_stmt",
-              "uuid": "435929a5-659f-4421-a7f4-9eab084dde13",
+              "uuid": "f8184e26-fb8f-4887-bf21-3c56c98f8e4b",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:User accounts are managed through automated provisioning systems. Account creation, modification, and deletion are logged and monitored. Privileged accounts require additional approval workflows.\n\nResponsible Role: Identity Management Team\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ad550152-47bc-4c07-8a41-b990238a0002",
+              "uuid": "56051545-f172-4f7a-ba04-f39f9b3b05d4",
+              "description": "Implementation of AC-2 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
             }
           ]
         },
         {
-          "uuid": "048fc617-ea57-4035-815c-199baf934244",
+          "uuid": "50433da4-bba8-40c8-b4e1-b3ea708ae693",
           "control-id": "AU-1",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "implemented"
-            },
-            {
-              "name": "source-section",
-              "value": "AU-1 Audit and Accountability Policy and Procedures"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "AU-1_stmt",
-              "uuid": "0bc43b84-c636-479f-a0a9-944b7becf468",
+              "uuid": "b1f27aa6-c9ac-404d-b41e-ae144a642a8e",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:Comprehensive audit logging is implemented across all system components. Logs are centrally collected, monitored, and retained for compliance requirements.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "6f43db58-8985-46f4-ae55-ade2efe15272",
+              "uuid": "b41e54fe-d5b5-455d-864f-e2a777dd4dab",
+              "description": "Implementation of AU-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
             }
           ]
         },
         {
-          "uuid": "2680408f-c1e2-4236-b12d-e6da4e839b22",
+          "uuid": "6dc55ed6-c9c9-4a74-98b7-626f1024f433",
           "control-id": "IA-2",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "implemented"
-            },
-            {
-              "name": "source-section",
-              "value": "IA-2 Identification and Authentication (Organizational Users)"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "IA-2_stmt",
-              "uuid": "270cbf12-6702-4c89-81e5-98c202b3acd8",
+              "uuid": "cc312cb2-cfca-40c5-a214-5c0a0bd538c7",
               "remarks": "Implementation Status: Implemented\n\nControl Implementation:All users must authenticate using multi-factor authentication (MFA). Authentication integrates with organizational identity providers supporting SAML 2.0 and OpenID Connect.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "f5eefca2-ca0b-4801-9b54-b210272da864",
+              "uuid": "ec37af5d-8958-4b04-be50-298916884ed8",
+              "description": "Implementation of IA-2 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
             }
           ]
         },
         {
-          "uuid": "5efe8c03-85f0-4fc0-9f2f-7d1f734980dd",
+          "uuid": "60584e0e-2b13-439d-ba2c-67983d6283be",
+          "control-id": "AT-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AT-1_stmt",
+              "uuid": "3fce7c8b-7b8b-45d9-b1af-333675aa348c",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:The organization has established security awareness and training policies and procedures. All personnel receive annual security awareness training and role-based training for specialized positions.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "99bd4f70-0b24-4c7f-890c-b3f811aecef9",
+              "uuid": "56d92c0b-e1fb-4029-a3e4-2d19ce89f9c5",
+              "description": "Implementation of AT-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "18123674-aa98-4ac9-a468-e8a949e6f25b",
+          "control-id": "CA-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "CA-1_stmt",
+              "uuid": "bb0ab79b-3aa6-4c81-8bd8-4095721a07b1",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Security assessment and authorization policies define the methodology for security controls assessment and system authorization. Continuous monitoring procedures ensure ongoing authorization compliance.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "a9c5fc26-0f6a-4863-b93b-0ae8a12fa0c0",
+              "uuid": "f6063098-577a-4a57-bf8b-c33ea7c00104",
+              "description": "Implementation of CA-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "1b9f8c96-9568-41c0-aa38-a8e727052c36",
+          "control-id": "CM-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "CM-1_stmt",
+              "uuid": "00e37968-ee22-49b5-a528-43ba7d268fa6",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Configuration management policies ensure secure baseline configurations are maintained. All configuration changes are documented, approved, and tested before deployment.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "189e1f0b-4677-489f-9ae8-320f7b99590e",
+              "uuid": "35ca777a-c02c-4fb7-9435-2c6742ffaa99",
+              "description": "Implementation of CM-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "f21bebf1-cb58-49f1-9a62-17f7f1dcd619",
+          "control-id": "CP-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "CP-1_stmt",
+              "uuid": "ab7c0ebc-3a29-4df6-97f5-8f6a4975713c",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Contingency planning policies address system backup, disaster recovery, and business continuity. Regular testing ensures contingency procedures remain effective.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "27dea69f-fa63-4a48-87be-0e641db6ef1b",
+              "uuid": "f1a0cec3-8dce-474e-a4fd-3ab1cc69c0ef",
+              "description": "Implementation of CP-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "b6adc777-694b-4037-b58d-4825fdba3928",
+          "control-id": "MA-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "MA-1_stmt",
+              "uuid": "061359d9-2cdc-4077-aee3-f26725be36aa",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:System maintenance policies define authorized maintenance activities and personnel. All maintenance is documented and performed with appropriate security precautions.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "b4d1dbf3-6fdc-4359-a9c6-39b08054d0cb",
+              "uuid": "730c72ed-86a3-4f47-998d-c86485be2786",
+              "description": "Implementation of MA-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "7bcbbdc2-f198-4632-adc1-b5049414db53",
+          "control-id": "MP-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "MP-1_stmt",
+              "uuid": "f9278041-4d2a-449c-8c1c-b1548e81f026",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Media protection policies address digital and physical media handling, marking, storage, and disposal. All media containing sensitive information is properly protected throughout its lifecycle.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "c87c7661-11df-484a-95ce-e10f4c3ce139",
+              "uuid": "9a71a766-1acf-488b-a0ff-54905813854f",
+              "description": "Implementation of MP-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "26ebfddd-c8fc-4b7e-a75d-30b77fdd214d",
+          "control-id": "PE-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "PE-1_stmt",
+              "uuid": "b828c606-3f28-4787-8517-2e7c6e19564b",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Physical and environmental protection policies define security controls for facilities, equipment rooms, and work areas. Environmental monitoring and access controls protect system components.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "9989ae36-b514-4568-95ef-bc1f4108e79b",
+              "uuid": "8037a8ca-5c10-4477-bce6-40036a3b3636",
+              "description": "Implementation of PE-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "c10a7b78-6c95-43c9-be67-e85f64e86b99",
+          "control-id": "PL-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "PL-1_stmt",
+              "uuid": "e2fea242-44f1-4bb2-9d98-2070ab4afc81",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Security planning policies establish the framework for developing, implementing, and maintaining security plans. Regular reviews ensure plans remain current and effective.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "4c668e7b-23af-4610-9be9-51c4b1826c73",
+              "uuid": "49fab1cb-aca9-41c4-bda4-9fb12f3658b9",
+              "description": "Implementation of PL-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "34a7af87-b1c3-48e3-83a7-89beaaf711be",
+          "control-id": "PS-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "PS-1_stmt",
+              "uuid": "7e693e62-86c5-42e8-9863-bf8a374304cf",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Personnel security policies define requirements for position risk designations, screening, and ongoing suitability. Background investigations are conducted commensurate with risk levels.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "cdec0be8-b522-4697-b947-8157553565aa",
+              "uuid": "0bc021e0-8646-452d-879f-30288f881932",
+              "description": "Implementation of PS-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "961abda8-4657-4f41-9f3a-dd0563d6862d",
+          "control-id": "SA-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "SA-1_stmt",
+              "uuid": "d2888927-d91d-4402-8f7b-68d9ccf2477b",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:System and services acquisition policies ensure security requirements are incorporated into procurement processes. Vendor security assessments and contract security terms protect organizational interests.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "82daea53-8399-49b6-8609-93dedf3ccea1",
+              "uuid": "43183b6d-5b7f-482a-983c-b3fee302a6ad",
+              "description": "Implementation of SA-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "57682261-c194-4691-bfea-02146c6d6174",
+          "control-id": "SI-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "SI-1_stmt",
+              "uuid": "66a17c9f-0807-459e-9224-489a446dfcaa",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:System and information integrity policies address flaw remediation, malicious code protection, and information system monitoring. Automated tools provide continuous integrity monitoring.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "1020f954-b9d5-4012-9a2a-3462489070d9",
+              "uuid": "1777ecee-cffe-461c-9404-d7b40fbe6e7c",
+              "description": "Implementation of SI-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "8ec5afdc-9854-438b-9e1b-ef99e5d36b83",
+          "control-id": "SR-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "SR-1_stmt",
+              "uuid": "817bda3a-c042-4318-913f-b576a0fecdd2",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Supply chain risk management policies address risks from external service providers and system components. Vendor risk assessments and supply chain monitoring ensure secure sourcing practices.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "e9b001ba-320a-4adb-8299-95f8fdaf98a8",
+              "uuid": "fb94167d-cb54-4f61-bf0b-2e171c18d9bf",
+              "description": "Implementation of SR-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "91ab5fff-2d4a-4d28-baa7-c14459cc5f3e",
           "control-id": "AU-11",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "partially-implemented"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "AU-11_stmt",
-              "uuid": "3803c94a-0506-482b-b06d-3c41f388b958",
+              "uuid": "e7428b45-a130-4617-983c-61fba3e3e421",
               "remarks": "Control AU-11 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "f1a8e46d-dde4-4b69-9f42-7acadd3afd1c",
+              "uuid": "c800fe25-bc54-43ea-a82d-dc54b48da7a1",
+              "description": "Implementation of AU-11 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
             }
           ]
         },
         {
-          "uuid": "519a00ff-37f0-43ed-b016-aeec61680615",
+          "uuid": "0cf7b510-9e6c-4bc8-a35c-a2addb7b7f0e",
           "control-id": "RA-5",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "partially-implemented"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "RA-5_stmt",
-              "uuid": "9540447b-04e3-47eb-ac6c-af9fe902350e",
+              "uuid": "62806c7c-9615-41e9-9c0a-d5fbd0203802",
               "remarks": "Control RA-5 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "b713a0c0-f840-4a99-ba20-54cc33663627",
+              "uuid": "e1ce7c05-cb5c-4c01-a21b-47a7a703b317",
+              "description": "Implementation of RA-5 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
             }
           ]
         },
         {
-          "uuid": "6fa1c813-5371-4202-98ac-1f0bbad42316",
+          "uuid": "62cf5e8c-c3f5-4e5c-af98-e2f508e0b867",
           "control-id": "IR-1",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "partially-implemented"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "IR-1_stmt",
-              "uuid": "51ff1e02-b73d-4230-bced-f16ee59aa7cc",
+              "uuid": "63547c92-70fc-431d-b3a7-e3683b69fa8a",
               "remarks": "Control IR-1 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ee0ea43f-b4a5-47d4-a144-5b9d6110b300",
+              "uuid": "6dbebf4d-3608-4fa1-b4d5-1bd2ba68087f",
+              "description": "Implementation of IR-1 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
             }
           ]
         },
         {
-          "uuid": "a522065c-f541-4cec-b995-8fe9cfd8739b",
+          "uuid": "e2927f45-ff33-4e87-ae6f-6d8f11fb79b6",
           "control-id": "SC-12",
           "props": [
             {
-              "name": "implementation-status",
-              "value": "partially-implemented"
+              "name": "control-origination",
+              "value": "system-specific"
             }
           ],
           "statements": [
             {
               "statement-id": "SC-12_stmt",
-              "uuid": "13403ad5-1338-4489-967b-c6713c979cf9",
+              "uuid": "3c409f94-7df6-45f2-b68d-129b43782e07",
               "remarks": "Control SC-12 implementation has open POA&M items. See POA&M artifact for details."
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ed50d8dc-b0ab-4d8a-93c2-3a4d57bc3871",
+              "uuid": "a181c1f8-8e0e-44a0-9b97-784992d6301f",
+              "description": "Implementation of SC-12 through system components",
+              "implementation-status": {
+                "state": "partially-implemented"
+              }
             }
           ]
         }
@@ -611,17 +926,17 @@
     "back-matter": {
       "resources": [
         {
-          "uuid": "a85e6a80-ef85-4c9f-b739-4718799cb480",
-          "title": "Source Document: sample_ssp.md",
+          "uuid": "9bc10f3c-03ad-4eb2-b710-b8c9a90799db",
+          "title": "Source Inventory: inventory_sample.xlsx",
           "rlinks": [
             {
-              "href": "inputs/sample_ssp.md"
+              "href": "inputs/inventory_sample.xlsx"
             }
           ],
-          "description": "Original document file used for OSCAL generation"
+          "description": "Original inventory file used for OSCAL generation"
         },
         {
-          "uuid": "2fdf6265-dbf1-4901-a192-11c2a4900962",
+          "uuid": "475bdf31-76d7-4f81-b0c6-4a06be44307f",
           "title": "Source Poam: poam_sample.xlsx",
           "rlinks": [
             {
@@ -631,14 +946,14 @@
           "description": "Original poam file used for OSCAL generation"
         },
         {
-          "uuid": "fd2eab00-a306-4c8b-9eaa-6bb9bd04766f",
-          "title": "Source Inventory: inventory_sample.xlsx",
+          "uuid": "9e700370-05f4-48db-90ac-c3146f909862",
+          "title": "Source Document: sample_ssp.md",
           "rlinks": [
             {
-              "href": "inputs/inventory_sample.xlsx"
+              "href": "inputs/sample_ssp.md"
             }
           ],
-          "description": "Original inventory file used for OSCAL generation"
+          "description": "Original document file used for OSCAL generation"
         }
       ]
     }

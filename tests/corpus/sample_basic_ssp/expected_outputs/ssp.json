@@ -1,0 +1,252 @@
+{
+  "system-security-plan": {
+    "uuid": "d0eda804-2e58-43b6-8014-b90f26dcc9a9",
+    "metadata": {
+      "title": "System Security Plan",
+      "published": "2025-09-14T02:53:00.599886Z",
+      "last-modified": "2025-09-14T02:53:00.599886Z",
+      "version": "1.0",
+      "oscal-version": "1.1.3",
+      "props": [
+        {
+          "name": "keywords",
+          "value": "source-file:/tmp/test_ssp/basic_ssp.md, source-type:md, extraction-date:2025-09-14T02:53:00.558624Z, file-hash:bcffeff5ef8b8e661192d14fd721db32dc74bb776139bbba6987069e7a5cee36, pandoc-version:pandoc 3.6.3"
+        }
+      ],
+      "roles": [
+        {
+          "id": "system-administrator",
+          "title": "System Administrator",
+          "description": "Responsible for system administration and maintenance"
+        },
+        {
+          "id": "system-owner",
+          "title": "System Owner",
+          "description": "Responsible for system ownership and governance"
+        },
+        {
+          "id": "authorizing-official",
+          "title": "Authorizing Official",
+          "description": "Responsible for system authorization"
+        },
+        {
+          "id": "isso",
+          "title": "Information System Security Officer",
+          "description": "Responsible for system security"
+        },
+        {
+          "id": "system-user",
+          "title": "System User",
+          "description": "Standard user of the system"
+        }
+      ]
+    },
+    "import-profile": {
+      "href": "https://raw.githubusercontent.com/usnistgov/oscal-content/master/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_LOW-baseline_profile.json"
+    },
+    "system-characteristics": {
+      "system-ids": [
+        {
+          "identifier-type": "https://ietf.org/rfc/rfc4122",
+          "id": "TEST-001FIPS-199 Level: Moderate"
+        }
+      ],
+      "system-name": "Unknown System",
+      "description": "",
+      "status": {
+        "state": "operational"
+      },
+      "system-information": {
+        "information-types": [
+          {
+            "uuid": "7c19bff1-fd9f-48b0-b878-a7f4f63df1d0",
+            "title": "General Business Information",
+            "description": "General business information processed by the system",
+            "categorizations": [
+              {
+                "system": "https://doi.org/10.6028/NIST.SP.800-60v1r1",
+                "information-type-ids": [
+                  "C.2.8.12"
+                ]
+              }
+            ],
+            "confidentiality-impact": {
+              "base": "fips-199-moderate"
+            },
+            "integrity-impact": {
+              "base": "fips-199-moderate"
+            },
+            "availability-impact": {
+              "base": "fips-199-low"
+            }
+          }
+        ]
+      },
+      "authorization-boundary": {
+        "description": "Authorization boundary description not found in source document."
+      },
+      "network-architecture": {
+        "description": "Network architecture description not found in source document."
+      },
+      "data-flow": {
+        "description": "Data flow description not found in source document."
+      }
+    },
+    "system-implementation": {
+      "users": [
+        {
+          "uuid": "ace2572d-f313-4194-b70a-d293c3f69e4e",
+          "title": "System Administrator",
+          "description": "Administrative access to system components",
+          "role-ids": [
+            "system-administrator"
+          ],
+          "authorized-privileges": [
+            {
+              "title": "admin",
+              "functions-performed": [
+                "admin"
+              ]
+            },
+            {
+              "title": "configure",
+              "functions-performed": [
+                "configure"
+              ]
+            },
+            {
+              "title": "monitor",
+              "functions-performed": [
+                "monitor"
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "d462ec9b-3539-4c51-8227-b2b47b29021d",
+          "title": "System User",
+          "description": "Standard user access to system",
+          "role-ids": [
+            "system-user"
+          ],
+          "authorized-privileges": [
+            {
+              "title": "read",
+              "functions-performed": [
+                "read"
+              ]
+            },
+            {
+              "title": "write",
+              "functions-performed": [
+                "write"
+              ]
+            }
+          ]
+        }
+      ],
+      "components": [],
+      "inventory-items": []
+    },
+    "control-implementation": {
+      "description": "Control implementation descriptions extracted from source documents.",
+      "implemented-requirements": [
+        {
+          "uuid": "22180073-c46d-44cc-9b9c-5710df28525b",
+          "control-id": "AC-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AC-1_stmt",
+              "uuid": "a8bee3f9-7e81-4c89-9b17-3d65388c8185",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:The organization has implemented access control policies and procedures. All user access requires authentication and authorization through the centralized identity management system.\n\nResponsible Role: Security Team\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "05ca10c3-1a00-4bee-b2bc-a18c0be47c88",
+              "uuid": "de71fa84-544b-492f-9b4d-4b11fd9019f0",
+              "description": "Implementation of AC-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "ee3af9b4-6cd3-4182-b15a-569429ab1f52",
+          "control-id": "AC-2",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AC-2_stmt",
+              "uuid": "b29ae8bd-3dd7-4ad3-bcce-c33e9b46fe6d",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:User accounts are managed through automated provisioning. Account lifecycle includes creation, modification, and deletion with appropriate logging and monitoring.\n\nResponsible Role: Identity Management Team\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "ea3316b3-aead-4e93-8a4e-90b9592b2968",
+              "uuid": "c778f2b8-1130-4e98-957e-9580298ee136",
+              "description": "Implementation of AC-2 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        },
+        {
+          "uuid": "75f533db-aa52-4a36-aff8-6f3b02f16b10",
+          "control-id": "AU-1",
+          "props": [
+            {
+              "name": "control-origination",
+              "value": "system-specific"
+            }
+          ],
+          "statements": [
+            {
+              "statement-id": "AU-1_stmt",
+              "uuid": "7ed463e7-5892-4c15-acd2-65a697d03fb3",
+              "remarks": "Implementation Status: Implemented\n\nControl Implementation:Comprehensive audit logging is implemented. All security-relevant events are logged, monitored, and retained according to organizational policy.\n\n"
+            }
+          ],
+          "by-components": [
+            {
+              "component-uuid": "4f1ca1e1-f695-467e-96d7-575b82406a3e",
+              "uuid": "8ee6d16d-6e60-496e-89d7-668240edda79",
+              "description": "Implementation of AU-1 through system components",
+              "implementation-status": {
+                "state": "implemented"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "011f0721-0374-4341-85b9-e8661417da04",
+          "title": "Source Document: basic_ssp.md",
+          "rlinks": [
+            {
+              "href": "/tmp/test_ssp/basic_ssp.md"
+            }
+          ],
+          "description": "Original document file used for OSCAL generation"
+        }
+      ]
+    }
+  }
+}

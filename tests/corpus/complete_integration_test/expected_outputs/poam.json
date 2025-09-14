@@ -1,66 +1,66 @@
 {
   "plan-of-action-and-milestones": {
-    "uuid": "ac1bc0f3-e7d4-4682-9f6f-1baa619856d9",
+    "uuid": "697bd007-9f6a-41fd-b980-734aa5196a4a",
     "metadata": {
-      "title": "Plan of Action and Milestones (POA&M) - FedRAMP Cloud Service Provider",
-      "published": "2025-09-14T03:02:36.856771Z",
-      "last-modified": "2025-09-14T03:02:36.856771Z",
+      "title": "Plan of Action and Milestones (POA&M)",
+      "published": "2025-09-14T02:52:18.174449Z",
+      "last-modified": "2025-09-14T02:52:18.174449Z",
       "version": "1.0",
       "oscal-version": "1.1.3",
       "props": [
         {
           "name": "keywords",
-          "value": "source-file:inputs/poam_sample.xlsx, sheet-name:Sheet1, template-version:Unknown_v3.0_compatible, extraction-date:2025-09-14T03:02:36.785060Z, file-hash:9ba5177a35b7b2946ecada5169b4f6be3008d57eaec07bfab33f1ccafd77289c, fedramp-poam, cloud-service-provider-remediation, customer-responsibility-matrix, fedramp-continuous-monitoring, authorization-boundary-deficiencies"
+          "value": "source-file:tests/corpus/complete_integration_test/inputs/poam_sample.xlsx, sheet-name:Sheet1, template-version:Unknown_v3.0_compatible, extraction-date:2025-09-14T02:52:18.158229Z, file-hash:9ba5177a35b7b2946ecada5169b4f6be3008d57eaec07bfab33f1ccafd77289c"
         }
       ]
     },
     "system-id": {
       "identifier-type": "https://ietf.org/rfc/rfc4122",
-      "id": "eacc5c3f-c978-40fb-bd6e-d036400bac5c"
+      "id": "1310a0f2-384d-4a5b-9a3b-347d1ba7df23"
     },
     "local-definitions": {
       "components": [
         {
-          "uuid": "82bd08d8-7449-4e40-86b8-a0cc1896cb59",
+          "uuid": "dc338647-24f5-4d32-983d-c89aece06f83",
           "type": "software",
-          "title": "admin-portal",
-          "description": "Component referenced in POA&M: admin-portal",
+          "title": "Admin Portal",
+          "description": "Component referenced in POA&M: Admin Portal",
           "status": {
             "state": "operational"
           }
         },
         {
-          "uuid": "26fa3eb3-1337-43f3-8322-0d429a525dbc",
+          "uuid": "852124d7-8e8d-418f-97ed-ed3701a4b8e8",
           "type": "software",
-          "title": "all-production-systems",
-          "description": "Component referenced in POA&M: all-production-systems",
+          "title": "All production systems",
+          "description": "Component referenced in POA&M: All production systems",
           "status": {
             "state": "operational"
           }
         },
         {
-          "uuid": "8cdb9af5-d0fc-434f-8cda-fd1be5a691ce",
+          "uuid": "2dabc609-5ce1-4039-a09c-b9ba6f0fd60c",
           "type": "software",
-          "title": "central-logging-system",
-          "description": "Component referenced in POA&M: central-logging-system",
+          "title": "Central Logging System",
+          "description": "Component referenced in POA&M: Central Logging System",
           "status": {
             "state": "operational"
           }
         },
         {
-          "uuid": "00735f2d-41e3-49a6-8b58-df502cc95c03",
+          "uuid": "1b99ecfc-ce81-486d-8a2d-11de381262bd",
           "type": "software",
-          "title": "incident-response-team",
-          "description": "Component referenced in POA&M: incident-response-team",
+          "title": "Incident Response Team",
+          "description": "Component referenced in POA&M: Incident Response Team",
           "status": {
             "state": "operational"
           }
         },
         {
-          "uuid": "9f7bef08-0018-4e79-8275-1371428e1550",
+          "uuid": "499d365e-84f7-4933-bc7a-11ad9465bb60",
           "type": "software",
-          "title": "production-database",
-          "description": "Component referenced in POA&M: production-database",
+          "title": "Production Database",
+          "description": "Component referenced in POA&M: Production Database",
           "status": {
             "state": "operational"
           }
@@ -69,23 +69,23 @@
     },
     "poam-items": [
       {
-        "uuid": "322cd334-c7cf-41c4-9a0c-aa9746bf111d",
+        "uuid": "b60ddfc3-dda0-4d15-9a0c-d300cf989a58",
         "title": "Multi-factor authentication not enforced for all admin accounts",
         "description": "Configure MFA enforcement in identity provider and update admin procedures",
         "props": [
           {
             "name": "marking",
-            "value": "poam-id:POAM-001; severity:high; scheduled-completion-date:2024-12-31; affected-assets:admin-portal; comments:Requires coordination with identity management team; source-row:2; source-sheet:Sheet1"
+            "value": "poam-id:POAM-001; severity:high; scheduled-completion-date:2024-12-31; affected-assets:Admin Portal; comments:Requires coordination with identity management team; source-row:2; source-sheet:Sheet1"
           }
         ],
         "related-findings": [
           {
-            "finding-uuid": "889b68b4-6c13-4dd0-919a-010bed6c34cb"
+            "finding-uuid": "a15f232d-0929-49cc-88be-0512643c4b06"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "27ae08ad-f495-4fdf-bebd-218326b2a5a9"
+            "risk-uuid": "fb709ec1-b76a-4dbf-b860-5679177202a6"
           }
         ],
         "origins": [
@@ -93,7 +93,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "4677d2c2-d606-41d5-9a74-b3b9255ea680",
+                "actor-uuid": "1ab5bf4e-bbc9-4cb7-b951-2abdf951dd07",
                 "props": [
                   {
                     "name": "marking",
@@ -106,23 +106,23 @@
         ]
       },
       {
-        "uuid": "ce32653b-a782-4ef0-8ad9-b2b39edf5c11",
+        "uuid": "0e3553a3-5f76-4537-961d-d5df541acc05",
         "title": "Audit log retention period insufficient",
         "description": "Increase log retention period from 90 days to 1 year",
         "props": [
           {
             "name": "marking",
-            "value": "poam-id:POAM-002; severity:moderate; scheduled-completion-date:2024-11-30; affected-assets:central-logging-system; comments:Storage costs approved by management; source-row:3; source-sheet:Sheet1"
+            "value": "poam-id:POAM-002; severity:moderate; scheduled-completion-date:2024-11-30; affected-assets:Central Logging System; comments:Storage costs approved by management; source-row:3; source-sheet:Sheet1"
           }
         ],
         "related-findings": [
           {
-            "finding-uuid": "b3d7f6a6-4c24-470e-bc25-50a12c0934eb"
+            "finding-uuid": "47b420e6-e856-46a9-a098-d1c7fca013ec"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "9bb0d79f-25f2-4b7a-bb68-9582704953fd"
+            "risk-uuid": "c313ad0e-698f-46f1-a84d-618695e006ff"
           }
         ],
         "origins": [
@@ -130,7 +130,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "bff8f888-bb68-4cb6-86de-81cd55649aa3",
+                "actor-uuid": "0a9cf22f-f1d7-451f-b745-af23ff867034",
                 "props": [
                   {
                     "name": "marking",
@@ -143,23 +143,23 @@
         ]
       },
       {
-        "uuid": "8fddc779-58f6-4263-87f1-a2effe6fa8df",
+        "uuid": "364da27b-7edb-477d-998d-c4a36acd0dc8",
         "title": "Vulnerability scanning frequency needs improvement",
         "description": "Configure automated weekly vulnerability scans",
         "props": [
           {
             "name": "marking",
-            "value": "poam-id:POAM-003; severity:low; scheduled-completion-date:2025-01-15; affected-assets:all-production-systems; comments:Requires approval for additional scanner licenses; source-row:4; source-sheet:Sheet1"
+            "value": "poam-id:POAM-003; severity:low; scheduled-completion-date:2025-01-15; affected-assets:All production systems; comments:Requires approval for additional scanner licenses; source-row:4; source-sheet:Sheet1"
           }
         ],
         "related-findings": [
           {
-            "finding-uuid": "0d495ccb-87f6-4c18-be2f-c5796bb41f6c"
+            "finding-uuid": "a367d4a3-6b50-4d63-b11f-db28dfd1e763"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "08961e56-6148-498b-93e4-e59f68937af4"
+            "risk-uuid": "c74ab02c-01c7-4444-a965-efa890580e31"
           }
         ],
         "origins": [
@@ -167,7 +167,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "ff944e08-d244-4f46-b78c-b67f4b946065",
+                "actor-uuid": "c7977fb9-fac4-40dc-af12-ab7a9b9a63db",
                 "props": [
                   {
                     "name": "marking",
@@ -180,23 +180,23 @@
         ]
       },
       {
-        "uuid": "b34b1112-cb4a-4223-8c04-fb0f2348c771",
+        "uuid": "358b0693-2934-40b1-9cd9-a8639556ee94",
         "title": "Incident response procedures need annual review",
         "description": "Annual review and update of incident response procedures",
         "props": [
           {
             "name": "marking",
-            "value": "poam-id:POAM-004; severity:moderate; affected-assets:incident-response-team; comments:Review completed - procedures current; source-row:5; source-sheet:Sheet1"
+            "value": "poam-id:POAM-004; severity:moderate; affected-assets:Incident Response Team; comments:Review completed - procedures current; source-row:5; source-sheet:Sheet1"
           }
         ],
         "related-findings": [
           {
-            "finding-uuid": "1b9cc125-262e-4fe3-9967-7b385dd0129e"
+            "finding-uuid": "f205385b-b69e-4f2f-b424-cc42d694ecdc"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "5b4bc405-5518-4de3-aaeb-03d1747d4c76"
+            "risk-uuid": "4ccfd7b3-284b-42ac-b4c6-e21a8102743e"
           }
         ],
         "origins": [
@@ -204,7 +204,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "40c8ad25-406d-4283-aa07-91a921a1fe30",
+                "actor-uuid": "02cd0bfe-6086-468c-8fc2-7e4bb49f81c2",
                 "props": [
                   {
                     "name": "marking",
@@ -217,23 +217,23 @@
         ]
       },
       {
-        "uuid": "13e34ab5-023d-4646-b1b2-aa107e1df4da",
+        "uuid": "a73cdf1c-b495-42c4-a08b-42e558c088a1",
         "title": "Database encryption keys require rotation",
         "description": "Implement automated key rotation for database encryption",
         "props": [
           {
             "name": "marking",
-            "value": "poam-id:POAM-005; severity:high; scheduled-completion-date:2024-10-31; affected-assets:production-database; comments:Testing completed successfully; source-row:6; source-sheet:Sheet1"
+            "value": "poam-id:POAM-005; severity:high; scheduled-completion-date:2024-10-31; affected-assets:Production Database; comments:Testing completed successfully; source-row:6; source-sheet:Sheet1"
           }
         ],
         "related-findings": [
           {
-            "finding-uuid": "ac253a98-fe52-4c59-9390-c30476010aa0"
+            "finding-uuid": "8b453445-9b22-4447-837f-0e7feeb46359"
           }
         ],
         "related-risks": [
           {
-            "risk-uuid": "2ed3f193-5d50-40a8-8a2d-901aae99f34e"
+            "risk-uuid": "5fc9ef94-be79-405d-a0d3-69295563e368"
           }
         ],
         "origins": [
@@ -241,7 +241,7 @@
             "actors": [
               {
                 "type": "party",
-                "actor-uuid": "f489c282-c978-4277-8d3b-d27a79b0a402",
+                "actor-uuid": "ac0d1db7-4df7-4978-adbb-fb5cf3440d41",
                 "props": [
                   {
                     "name": "marking",
@@ -257,11 +257,11 @@
     "back-matter": {
       "resources": [
         {
-          "uuid": "af3a8833-3bfe-4ed5-bb56-bf107660fbc2",
+          "uuid": "40b735b5-e8f5-4169-ad71-fcd67301d8f2",
           "title": "POA&M Source: poam_sample.xlsx",
           "rlinks": [
             {
-              "href": "inputs/poam_sample.xlsx"
+              "href": "tests/corpus/complete_integration_test/inputs/poam_sample.xlsx"
             }
           ],
           "description": "Original POA&M spreadsheet used for OSCAL generation",

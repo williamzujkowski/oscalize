@@ -6,8 +6,10 @@ Provides validation of OSCAL artifacts using NIST oscal-cli and reporting capabi
 
 from .oscal_validator import OSCALValidator
 from .validation_reporter import ValidationReporter
+from .validation_pipeline import ValidationPipeline
 
 __all__ = [
     'OSCALValidator',
-    'ValidationReporter'
+    'ValidationReporter',
+    'ValidationPipeline'
 ]

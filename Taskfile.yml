@@ -74,6 +74,18 @@ tasks:
     generates:
       - "{{.VALIDATION_DIR}}/*.log"
 
+  validate-enhanced:
+    desc: "Run enhanced OSCAL validation pipeline with comprehensive error reporting"
+    cmds:
+      - echo "Running enhanced OSCAL validation pipeline..."
+      - python {{.TOOLS_DIR}}/cli.py validate-enhanced {{.OSCAL_DIR}} --use-docker
+    sources:
+      - "{{.OSCAL_DIR}}/*.json"
+    generates:
+      - "{{.OSCAL_DIR}}/validation/*.log"
+      - "{{.OSCAL_DIR}}/validation/summary.json"
+      - "{{.OSCAL_DIR}}/validation/detailed_validation_report.json"
+
   validation-summary:
     desc: "Generate validation summary report"
     internal: true
@@ -89,6 +101,27 @@ tasks:
       - echo "Bundle created at {{.DIST_DIR}}/oscalize-bundle.tar.gz"
     generates:
       - "{{.DIST_DIR}}/oscalize-bundle.tar.gz"
+
+  verify-manifest:
+    desc: "Verify manifest integrity and file hashes"
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py verify-manifest {{.OSCAL_DIR}}/manifest.json
+
+  verify-bundle:
+    desc: "Verify bundle integrity without extraction"
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py verify-bundle {{.DIST_DIR}}/oscalize-bundle.tar.gz
+
+  list-bundle:
+    desc: "List bundle contents without extraction"
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py list-bundle {{.DIST_DIR}}/oscalize-bundle.tar.gz
+
+  extract-bundle:
+    desc: "Extract and verify bundle"
+    cmds:
+      - echo "Extracting bundle to {{.DIST_DIR}}/extracted..."
+      - python {{.TOOLS_DIR}}/cli.py extract-bundle {{.DIST_DIR}}/oscalize-bundle.tar.gz {{.DIST_DIR}}/extracted
 
   manifest:
     desc: "Generate manifest with hashes and timestamps"
@@ -121,9 +154,37 @@ tasks:
       - python -m pytest tests/ -v --cov={{.TOOLS_DIR}}
 
   test-corpus:
-    desc: "Test against corpus of known inputs/outputs"
+    desc: "Test against corpus of known inputs/outputs (legacy)"
     cmds:
       - python {{.TOOLS_DIR}}/cli.py test-corpus tests/corpus/
+
+  test-corpus-enhanced:
+    desc: "Run enhanced corpus testing with real conversion and validation"
+    cmds:
+      - echo "Running enhanced corpus testing..."
+      - python {{.TOOLS_DIR}}/cli.py test-corpus-enhanced tests/corpus/ --include-validation
+    sources:
+      - "tests/corpus/**/*"
+
+  generate-corpus:
+    desc: "Generate golden corpus from current inputs"
+    cmds:
+      - echo "Generating golden corpus from current inputs..."
+      - python {{.TOOLS_DIR}}/cli.py create-golden-test tests/corpus/ --inputs-dir {{.INPUTS_DIR}}
+    sources:
+      - "{{.INPUTS_DIR}}/*"
+
+  validate-corpus:
+    desc: "Validate corpus integrity and completeness"
+    cmds:
+      - python {{.TOOLS_DIR}}/cli.py validate-corpus-integrity tests/corpus/
+
+  corpus-full:
+    desc: "Full corpus workflow: generate from inputs -> test -> validate"
+    cmds:
+      - task: generate-corpus
+      - task: test-corpus-enhanced  
+      - task: validate-corpus
 
   lint:
     desc: "Run code quality checks"
@@ -189,16 +250,45 @@ tasks:
 
   # Documentation and compliance
   compliance-check:
-    desc: "Check compliance with M-24-15 requirements"
+    desc: "Check compliance with M-24-15, FedRAMP, and NIST SP 800-53 requirements"
     cmds:
+      - echo "Running comprehensive compliance analysis..."
       - python {{.TOOLS_DIR}}/cli.py compliance-check {{.OSCAL_DIR}}
+
+  compliance-summary:
+    desc: "Generate compliance summary report"
+    cmds:
+      - echo "Generating compliance summary..."
+      - python {{.TOOLS_DIR}}/cli.py compliance-check {{.OSCAL_DIR}} > {{.OSCAL_DIR}}/compliance-report.json || true
+      - echo "Compliance report saved to {{.OSCAL_DIR}}/compliance-report.json"
 
   # Full workflow task
   full:
-    desc: "Complete workflow: convert -> validate -> bundle"
+    desc: "Complete workflow: convert -> validate -> compliance-check -> bundle"
     deps: [clean]
+    cmds:
+      - task: oscalize
+      - task: validate-enhanced
+      - task: compliance-summary
+      - task: bundle
+      - echo "Complete workflow finished. Check {{.DIST_DIR}} for outputs."
+  
+  full-legacy:
+    desc: "Complete workflow using legacy validation: convert -> validate -> bundle"
+    deps: [clean]  
     cmds:
       - task: oscalize
       - task: validate
       - task: bundle
       - echo "Complete workflow finished. Check {{.DIST_DIR}} for outputs."
+
+  full-with-testing:
+    desc: "Complete workflow with corpus testing: convert -> validate -> compliance -> test -> bundle"
+    deps: [clean]
+    cmds:
+      - task: oscalize
+      - task: validate-enhanced
+      - task: compliance-summary
+      - task: test-corpus-enhanced
+      - task: bundle
+      - echo "Complete workflow with testing finished. Check {{.DIST_DIR}} for outputs."
